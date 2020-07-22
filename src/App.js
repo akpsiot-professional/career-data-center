@@ -2,6 +2,21 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+function sethsfunction(){
+  fetch("https://test-app-akp.azurewebsites.net/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result)
+        },
+
+        (error) => {
+          console.log(error)
+        }
+      )
+}
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +33,10 @@ function App() {
         >
           Learn React
         </a>
+
+        <button onClick={sethsfunction}>
+          Oh boy what does this button do?
+        </button>
       </header>
     </div>
   );
