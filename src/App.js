@@ -1,44 +1,65 @@
 import React from 'react';
 import logo from './logo.svg';
+import { Container, Row, Col } from 'react-bootstrap'
+import NavigationBar from './NavigationBar'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
 
-function sethsfunction(){
+function sethsfunction() {
   fetch("https://test-app-akp.azurewebsites.net/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result)
-        },
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log(result)
+      },
 
-        (error) => {
-          console.log(error)
-        }
-      )
+      (error) => {
+        console.log(error)
+      }
+    )
 }
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <Container fluid className="App">
+      <Row>
+        <Col>
+          <NavigationBar />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <img src={logo} className="App-logo" alt="logo" />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
         </a>
-
-        <button onClick={sethsfunction}>
-          Oh boy what does this button do?
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <button onClick={sethsfunction}>
+            Oh boy what does this button do?
         </button>
-      </header>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
