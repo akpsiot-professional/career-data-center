@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Container, Row, Col } from 'react-bootstrap'
-import NavigationBar from './NavigationBar'
+import NavigationBar from './Components/NavigationBar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
@@ -23,11 +23,6 @@ function sethsfunction() {
 function App() {
   return (
     <Container fluid className="App">
-      <Row>
-        <Col>
-          <NavigationBar />
-        </Col>
-      </Row>
       <Row>
         <Col>
           <img src={logo} className="App-logo" alt="logo" />
