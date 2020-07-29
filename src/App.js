@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import akpsi_logo from './akpsi_logo.svg';
 import { Container, Row, Col } from 'react-bootstrap'
 import NavigationBar from './Components/NavigationBar'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -25,13 +25,13 @@ function App() {
     <Container fluid className="App">
       <Row>
         <Col>
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={akpsi_logo} className="App-logo" alt="logo" />
         </Col>
       </Row>
       <Row>
         <Col>
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Home page WIP
         </p>
         </Col>
       </Row>
