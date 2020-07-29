@@ -12,6 +12,7 @@ function NavigationBar() {
                     <Nav.Link href="/jobs">Jobs</Nav.Link>
                     <Nav.Link href="/reviews">Reviews</Nav.Link>
                     <Nav.Link href="/resumes">Resumes</Nav.Link>
+                    <Nav.Link href="/job_opportunities">Job Opportunities</Nav.Link>
                 </Nav>
         </Navbar>
     )
