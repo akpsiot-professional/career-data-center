@@ -8,8 +8,8 @@ function ReviewTab() {
     return (
         <Nav.Item>
             <Nav.Link eventKey="first">
-                Job 1
-            {/* Review tab information goes here */}
+                Review 1
+            {/* Basic review information goes here */}
             </Nav.Link>
         </Nav.Item>
     )

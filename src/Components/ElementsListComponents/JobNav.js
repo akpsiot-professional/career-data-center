@@ -8,8 +8,8 @@ function JobTab() {
     return (
         <Nav.Item>
             <Nav.Link eventKey="first">
-                Tab 1
-            {/* Job information goes here */}
+                Job 1
+            {/* Basic job information goes here */}
             </Nav.Link>
         </Nav.Item>
     )

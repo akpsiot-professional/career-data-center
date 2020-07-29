@@ -15,6 +15,7 @@ function ElementsList(props) {
                         {/* Testing a bunch of tabs */}
                         {/* This should get replaced with a function call that iterates over available data 
                         from the database and displays a few basic parts of job or review information in the list of jobs on the left*/}
+                        {/* Should be updated to use JobNav/ReviewNav component */}
                         {
                             Array.from({ length: 20 }).map((_, index) => (
                                 <Nav.Item>
@@ -29,6 +30,7 @@ function ElementsList(props) {
                         {/* Testing with many tabs */}
                         {/* This should get replaced with a function call that iterates over available data 
                         from the databse and displays FULL job or review information in the left pane*/}
+                        {/* Should be updated to use ReviewInfo/JobInfoComponent */}
                         {
                             Array.from({ length: 20 }).map((_, index) => (
                                 <Tab.Pane eventKey={"eventNum_" + index.toString()}>
