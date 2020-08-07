@@ -6,6 +6,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-top: 56px; /* Move below fixed nav-bar */
 }
 
 .App-logo {
@@ -34,6 +35,7 @@
   color: #61dafb;
 }
 
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -42,6 +44,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* .List-group-scroll{
+  max-height: 95vh;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+} */
 
 .Nav-bar {
   font-size: calc(10px + 2vmin);
