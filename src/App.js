@@ -6,20 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
 
-function sethsfunction() {
-  fetch("https://test-app-akp.azurewebsites.net/")
-    .then(res => res.json())
-    .then(
-      (result) => {
-        console.log(result)
-      },
-
-      (error) => {
-        console.log(error)
-      }
-    )
-}
-
 function App() {
   return (
     <Container fluid className="App">
@@ -45,13 +31,6 @@ function App() {
           >
             Learn React
         </a>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <button onClick={sethsfunction}>
-            Oh boy what does this button do?
-        </button>
         </Col>
       </Row>
     </Container>

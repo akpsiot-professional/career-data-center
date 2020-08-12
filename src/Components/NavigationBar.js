@@ -6,7 +6,7 @@ import '../App.css';
 function NavigationBar() {
     return (
         <Navbar bg="dark" variant="dark" float="center" fixed="top">
-                <Navbar.Brand href="/">AKPsi Professional Portal</Navbar.Brand>
+                <Navbar.Brand href="/">Omega Theta Professional Portal</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/jobs">Jobs</Nav.Link>

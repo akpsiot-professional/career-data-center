@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css';
 import Table from 'react-bootstrap/Table'
 
+
 const TEST_STRING = JSON.stringify({
     0: ["james", "king","of","the","universe"],
     1: ["seth", "gorilla","in","the", "jungle"],
@@ -68,7 +69,9 @@ class JobOpportunities extends React.Component {
 
     render() {
         return (
+            
             <div>
+                
                 <Table response ="sm">
                     {this._renderRows()}
                     {this._renderColumnHeaders()}

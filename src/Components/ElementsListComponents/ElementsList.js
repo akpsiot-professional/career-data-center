@@ -6,7 +6,8 @@ import LoremIpsum from '../LoremIpsum'
 
 // TODO: add props that let us specify whether we want a job postings list or a reviews list
 function ElementsList(props) {
-    const elementType = props.elementType
+    var rows = renderRows(props.elementType, props.data)
+    var content = renderContent(props.elementType, props.data)
     return (
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
@@ -17,11 +18,7 @@ function ElementsList(props) {
                         from the database and displays a few basic parts of job or review information in the list of jobs on the left*/}
                         {/* Should be updated to use JobNav/ReviewNav component */}
                         {
-                            Array.from({ length: 20 }).map((_, index) => (
-                                <Nav.Item>
-                                    <Nav.Link eventKey={"eventNum_" + index.toString()}>{elementType} {index}</Nav.Link>
-                                </Nav.Item>
-                            ))
+                            rows
                         }
                     </Nav>
                 </Col>
@@ -32,17 +29,40 @@ function ElementsList(props) {
                         from the databse and displays FULL job or review information in the left pane*/}
                         {/* Should be updated to use ReviewInfo/JobInfoComponent */}
                         {
-                            Array.from({ length: 20 }).map((_, index) => (
-                                <Tab.Pane eventKey={"eventNum_" + index.toString()}>
-                                    <LoremIpsum />
-                                </Tab.Pane>
-                            ))
+                            content
                         }
                     </Tab.Content>
                 </Col>
             </Row>
         </Tab.Container>
     )
+}
+
+function renderRows(type, data){
+    switch(type){
+        case "jobs":
+        return (
+            data.map((value, index) => (
+                <Nav.Item>
+                    <Nav.Link eventKey={"eventNum_" + index.toString()}>{value["first_name"]}</Nav.Link>
+                </Nav.Item>
+              ))
+        )
+    }
+}
+
+function renderContent(type, data){
+    switch(type){
+        case "jobs":
+        return (
+            data.map((value, index) => (
+                <Tab.Pane eventKey={"eventNum_" + index.toString()}>
+                        {value["last_name"]}
+                </Tab.Pane>
+
+              ))
+        )
+    }
 }
 
 export default ElementsList;
