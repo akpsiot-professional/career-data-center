@@ -57,7 +57,21 @@ function renderContent(type, data){
         return (
             data.map((value, index) => (
                 <Tab.Pane eventKey={"eventNum_" + index.toString()}>
-                        {value["last_name"]}
+                    <h3>Name: </h3>
+                    {value["first_name"]}
+                    {value["last_name"]}
+                    <h3>Contact</h3>
+                    {value["contact"]}
+                    <h3>Company:</h3>
+                    {value["company_title"]}
+                    <h3>Position Title</h3>
+                    {value["position_title"]}
+                    <h3>Job Description</h3>
+                    {value["job_description"]}
+                    <h3>Notes</h3>
+                    {value["notes"]}
+                    <h3>Conditions</h3>
+                    {value["conditions"]}
                 </Tab.Pane>
 
               ))

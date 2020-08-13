@@ -4,7 +4,6 @@ export default class DataManager {
     static token = null
 
     static getData(type, password){
-        console.log(this.password)
         return new Promise(resolve => {
             if (this.token == null){
                 if (password == null){
@@ -31,7 +30,7 @@ export default class DataManager {
             }else {
                 this.getJobData().then(job_response => {
                     if (job_response["token_accepted"]){
-                        resolve(job_response["data"])
+                        resolve(JSON.parse(job_response["data"]))
                     }else {
                         resolve({"error": true, "error_statement": "2: password not accepted"})
                     }

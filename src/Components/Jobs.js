@@ -4,33 +4,48 @@ import '../App.css';
 import { Container, Row, Col} from 'react-bootstrap';
 import ElementsList from './ElementsListComponents/ElementsList'
 import Modal from './modal/src';
+import Filter from './Filter'
 import DataManager from '../DataManager'
 import akpsi_logo from '../akpsi_logo.svg';
+import { Combobox } from 'react-widgets'
+
+import 'react-widgets/dist/css/react-widgets.css';
 
 
 
 class Jobs extends React.Component{
-
-
     constructor(props){
         super(props)
         this.state = {
             modalVisible: false,
             data: [],
-            password : null
+            filteredData: [],
+            password : null,
+            loadStatus: "loaded",
+            filterStatus : {"last_name": "All", "notes": "All"},
+            filters: ["last_name", "notes"]
         }
+        this.updateFilter = this.updateFilter.bind(this)
+        this.filterData = this.filterData.bind(this)
         this.loadData("not implemented yet", null)
     }
 
     loadData(){
-        console.log(this.state.password)
+        this.setState({
+            loadStatus : "loading"
+        });
         DataManager.getData("1", this.state.password).then(response => {
             if (response["error"]){
                 this.openModal()
+                this.setState({
+                    loadStatus : "loaded"
+                });
             }else {
                 this.setState({
                     data : response,
+                    loadStatus : "loaded"
                 });
+                this.filterData()
             }
         }
         )
@@ -54,7 +69,34 @@ class Jobs extends React.Component{
 
     handleChange(event) {
         this.setState({password: event.target.value})
-      }
+    }
+
+    filterData(){
+        var new_filtered_data = []
+        this.state.data.forEach(element => {
+            var matched = true
+            this.state.filters.forEach(key => {
+                try{
+                    if (this.state.filterStatus[key] != "All" && !element[key].includes(this.state.filterStatus[key])){
+                        matched = false
+                    }
+                }catch {
+                    matched = false
+                }
+            });
+            if (matched) {
+                new_filtered_data.push(element)
+            }
+        });
+
+        this.setState({filteredData: new_filtered_data})
+    }
+
+    updateFilter(filter, value){
+        var tmp = this.state.filterStatus
+        tmp[filter] = value
+        this.setState({filterStatus: tmp})
+    }
 
 
     render() {
@@ -64,6 +106,12 @@ class Jobs extends React.Component{
                     <Row>
                         <Col sm={12}>
                         <img src={akpsi_logo} className="App-logo" alt="logo" />
+                        </Col>
+                        
+                    </Row>
+                    <Row>
+                        <Col sm={12}>
+                            <p> {this.state.loadStatus}</p>
                         </Col>
                         
                     </Row>
@@ -96,7 +144,8 @@ class Jobs extends React.Component{
                             <a href="javascript:void(0);" onClick={() => this.closeModal(true)}>Submit</a>
                         </div>
                     </Modal>
-                    <ElementsList elementType="jobs" data={this.state.data}/>
+                    <Filter data={this.state.data} filters={this.state.filters} change={this.updateFilter} filter={this.filterData}></Filter>
+                    <ElementsList elementType="jobs" data={this.state.filteredData}/>
                 </Container>
             )
         }

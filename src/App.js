@@ -17,8 +17,14 @@ function App() {
       <Row>
         <Col>
           <p>
-            Home page WIP
+            Home page WIP ideas:
         </p>
+        <ul>
+          <li>Link to the google form</li>
+          <li>Statistics on the page ex: how many jobs have been submitted</li>
+          <li>How to use the site/about</li>
+        </ul>
+
         </Col>
       </Row>
       <Row>

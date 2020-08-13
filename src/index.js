@@ -21,7 +21,7 @@ ReactDOM.render(
       <Route path="/jobs" component={Jobs} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/resumes" component={Resumes} />
-      <Route path="/job_opportunities" component={JobOpportunities} />
+
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')
