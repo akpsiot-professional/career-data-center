@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
-h3 {
+h5 {
   text-align: left;
+}
+
+p {
+  text-align: left
+}
+
+.nav-colors {
+  color: red
 }

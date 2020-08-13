@@ -4,9 +4,10 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 15px;
   color: white;
-  padding-top: 56px; /* Move below fixed nav-bar */
+  /* Move below fixed nav-bar */
+  padding-top: 70px;
 }
 
 .App-logo {
@@ -51,6 +52,9 @@
   -webkit-overflow-scrolling: touch;
 } */
 
-.Nav-bar {
-  font-size: calc(10px + 2vmin);
+nav{
+  color: white;
+  -webkit-box-shadow: 5px 5px 18px -2px rgba(255,255,255,1);
+  -moz-box-shadow: 5px 5px 18px -2px rgba(255,255,255,1);
+  box-shadow: 5px 5px 18px -2px rgba(255,255,255,1);
 }

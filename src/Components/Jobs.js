@@ -22,8 +22,8 @@ class Jobs extends React.Component{
             filteredData: [],
             password : null,
             loadStatus: "loaded",
-            filterStatus : {"last_name": "All", "notes": "All"},
-            filters: ["last_name", "notes"]
+            filterStatus : {"company_type": "All", "position_title": "All"},
+            filters: ["company_type", "position_title"]
         }
         this.updateFilter = this.updateFilter.bind(this)
         this.filterData = this.filterData.bind(this)
@@ -111,7 +111,7 @@ class Jobs extends React.Component{
                     </Row>
                     <Row>
                         <Col sm={12}>
-                            <p> {this.state.loadStatus}</p>
+                            <p style={{textAlign: "center"}}> {this.state.loadStatus}</p>
                         </Col>
                         
                     </Row>

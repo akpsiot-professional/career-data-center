@@ -9,10 +9,10 @@ function ElementsList(props) {
     var rows = renderRows(props.elementType, props.data)
     var content = renderContent(props.elementType, props.data)
     return (
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container id="left-tabs-example" defaultActiveKey="eventNum_0">
             <Row>
                 <Col sm={4}>
-                    <Nav variant="tabs" className="flex-column">
+                    <Nav variant="pills" className="flex-column">
                         {/* Testing a bunch of tabs */}
                         {/* This should get replaced with a function call that iterates over available data 
                         from the database and displays a few basic parts of job or review information in the list of jobs on the left*/}
@@ -43,8 +43,13 @@ function renderRows(type, data){
         case "jobs":
         return (
             data.map((value, index) => (
-                <Nav.Item>
-                    <Nav.Link eventKey={"eventNum_" + index.toString()}>{value["first_name"]}</Nav.Link>
+                <Nav.Item >
+                    <Nav.Link eventKey={"eventNum_" + index.toString()}>
+                        <div>
+                            <h5>{value["company_title"]}</h5>
+                            <p>{value["position_title"]}</p>
+                        </div>
+                    </Nav.Link>
                 </Nav.Item>
               ))
         )
@@ -57,21 +62,21 @@ function renderContent(type, data){
         return (
             data.map((value, index) => (
                 <Tab.Pane eventKey={"eventNum_" + index.toString()}>
-                    <h3>Name: </h3>
-                    {value["first_name"]}
-                    {value["last_name"]}
-                    <h3>Contact</h3>
-                    {value["contact"]}
-                    <h3>Company:</h3>
-                    {value["company_title"]}
-                    <h3>Position Title</h3>
-                    {value["position_title"]}
-                    <h3>Job Description</h3>
-                    {value["job_description"]}
-                    <h3>Notes</h3>
-                    {value["notes"]}
-                    <h3>Conditions</h3>
-                    {value["conditions"]}
+                    <h5>Name: </h5>
+                    <p>{value["first_name"]}
+                    {" " + value["last_name"]}</p>
+                    <h5>Contact</h5>
+                    <p>{value["contact"]}</p>
+                    <h5>Company:</h5>
+                    <p>{value["company_title"]}</p>
+                    <h5>Position Title</h5>
+                    <p>{value["position_title"]}</p>
+                    <h5>Job Description</h5>
+                    <p>{value["job_description"]}</p>
+                    <h5>Notes</h5>
+                    <p>{value["notes"]}</p>
+                    <h5>Conditions</h5>
+                    <p>{value["conditions"]}</p>
                 </Tab.Pane>
 
               ))
