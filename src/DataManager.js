@@ -8,7 +8,7 @@ export default class DataManager {
             if (this.token == null){
                 if (password == null){
                     if (this.password == null){
-                        resolve({"error": true, "error_statement": "1: password not accepted"})
+                        resolve({"error": true, "error_statement": "1: no password submitted"})
                     }
                 }else {
                     this.password = password
@@ -16,11 +16,12 @@ export default class DataManager {
                 this.genToken().then(token_response=> {
                     if (token_response["pass_accepted"]){
                         this.token = token_response["token"]
-                        this.getJobData().then(job_response => {
+                        this.reqData(type).then(job_response => {
                             if (job_response["token_accepted"]){
                                 resolve(JSON.parse(job_response["data"]))
                             }else {
-                                resolve({"error": true, "error_statement": "2: password not accepted"})
+                                resolve({"error": true, "error_statement": "2: token not accepted"})
+                                this.token = null
                             }
                         })
                     }else {
@@ -28,7 +29,7 @@ export default class DataManager {
                     }
                 })
             }else {
-                this.getJobData().then(job_response => {
+                this.reqData(type).then(job_response => {
                     if (job_response["token_accepted"]){
                         resolve(JSON.parse(job_response["data"]))
                     }else {
@@ -48,9 +49,9 @@ export default class DataManager {
         })
     }
 
-    static getJobData(){
+    static reqData(type){
         return new Promise(resolve => {
-            fetch("https://test-app-akp.azurewebsites.net/?token=" + this.token).then(response => {
+            fetch("https://test-app-akp.azurewebsites.net/" + type + "?token=" + this.token).then(response => {
                 const json = response.json()
                 resolve(json)
             })

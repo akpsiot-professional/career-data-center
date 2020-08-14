@@ -8,22 +8,20 @@ import { Combobox } from 'react-widgets'
 
 // TODO: add props that let us specify whether we want a job postings list or a reviews list
 function Filter(props) {
-    console.log(props)
     return (
             <Container fluid style={{marginBottom: "30px"}}>
                 <Row>
-                {props.filters.map((key, __) => (
+                    {props.filters.map((key, __) => (
+                        <Col>
+                            <p style={{fontSize: "10px", marginBottom: "0px"}}>{removeUnderscore(key)}</p>
+                            <Combobox style={{width: "100%"}}data={parseSelection(key, props.data)} onChange={value => props.change(key, value)} caseSensitive={false} filter='contains' placeholder="All" />
+                        </Col>
+                    ))}
                     <Col>
-                        <p style={{fontSize: "10px", marginBottom: "0px"}}>{removeUnderscore(key)}</p>
-                        <Combobox style={{width: "100%"}}data={parseSelection(key, props.data)} onChange={value => props.change(key, value)} caseSensitive={false} filter='contains' placeholder="All" />
+                        <div style={{width: "50px", marginTop: "25px"}}>
+                            <a style={{color: "white", top: "100px"}}href="javascript:void(0);" onClick={() => props.filter()}>Filter</a>
+                        </div>
                     </Col>
-                ))}
-                <Col>
-                <div style={{marginLeft: "-100px", marginTop: "25px"}}>
-                    <a style={{color: "white", top: "100px"}}href="javascript:void(0);" onClick={() => props.filter()}>Filter</a>
-                </div>
-                    
-                </Col>
                 </Row>
                 
             </Container>

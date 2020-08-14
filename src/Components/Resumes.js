@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 function Resumes() {
     return (
         <Container fluid className="App">
-            <p>resumes are cool</p>
+            <p>Link to google drive</p>
         </Container>
     )
 }
