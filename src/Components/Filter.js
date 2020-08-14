@@ -17,11 +17,6 @@ function Filter(props) {
                             <Combobox style={{width: "100%"}}data={parseSelection(key, props.data)} onChange={value => props.change(key, value)} caseSensitive={false} filter='contains' placeholder="All" />
                         </Col>
                     ))}
-                    <Col>
-                        <div style={{width: "50px", marginTop: "25px"}}>
-                            <a style={{color: "white", top: "100px"}}href="javascript:void(0);" onClick={() => props.filter()}>Filter</a>
-                        </div>
-                    </Col>
                 </Row>
                 
             </Container>

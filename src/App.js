@@ -5,38 +5,41 @@ import NavigationBar from './Components/NavigationBar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
+const formStyle = {
+  height: "600px",
+  overflow: "scroll"
+}
+
 
 function App() {
   return (
     <Container fluid className="App">
       <Row>
         <Col>
-          <img src={akpsi_logo} className="App-logo" alt="logo" />
+          Welcome to the Omega Theta Professional Portal! 
         </Col>
       </Row>
       <Row>
         <Col>
-          <p>
-            Home page WIP ideas:
-        </p>
-        <ul>
-          <li>Link to the google form</li>
-          <li>Statistics on the page ex: how many jobs have been submitted</li>
-          <li>How to use the site/about</li>
-        </ul>
-
+          <img src={akpsi_logo} style={{height: "100px"}} className="App-logo" alt="logo" />
         </Col>
       </Row>
       <Row>
         <Col>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
+        <h4>
+          Submit Work/Interview Experience
+        </h4>
+        <div style={formStyle}>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf79vOfzZbmRTngJkpxS7fmZa7IQpJ-0SH3VUFz5PklxLbWeg/viewform?embedded=true" width="640" height="2382" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
+        </Col>
+        <Col>
+        <h4>
+          Submit a Job Opportunity
+        </h4>
+        <div style={formStyle}>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf79vOfzZbmRTngJkpxS7fmZa7IQpJ-0SH3VUFz5PklxLbWeg/viewform?embedded=true" width="640" height="2382" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        </div>
         </Col>
       </Row>
     </Container>

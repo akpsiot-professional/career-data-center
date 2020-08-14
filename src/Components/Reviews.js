@@ -17,8 +17,8 @@ import 'react-widgets/dist/css/react-widgets.css';
 class Reviews extends React.Component{
     constructor(props){
         super(props)
-        this.filterStatus = {"company_type": "All", "position_title": "All"}
-        this.filters = ["company_type", "position_title"]
+        this.filterStatus = {"company_title": "All"}
+        this.filters = ["company_title"]
     }
 
     render() {

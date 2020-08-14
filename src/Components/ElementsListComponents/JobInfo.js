@@ -84,7 +84,7 @@ function JobInfo(props) {
                         </Col>
                         <Col>
                             <p style={label}>Link</p>
-                            <a style={{textAlign: "left"}} href={value["link"]}>Apply</a>
+                            <a style={{textAlign: "left"}} target="_blank" href={value["link"]}>Apply</a>
                         </Col>
                     </Row>   
                 </div>

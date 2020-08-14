@@ -79,7 +79,7 @@ class AbstractPage extends React.Component{
             var matched = true
             this.state.filters.forEach(key => {
                 try{
-                    if (this.state.filterStatus[key] != "All" && !element[key].includes(this.state.filterStatus[key])){
+                    if (this.state.filterStatus[key] != "All" && !element[key].toLowerCase().includes(this.state.filterStatus[key].toLowerCase())){
                         matched = false
                     }
                 }catch {
@@ -98,6 +98,7 @@ class AbstractPage extends React.Component{
         var tmp = this.state.filterStatus
         tmp[filter] = value
         this.setState({filterStatus: tmp})
+        this.filterData()
     }
 
     renderModal(){
