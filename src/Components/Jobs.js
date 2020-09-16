@@ -24,7 +24,11 @@ class Jobs extends React.Component{
 
    render() {
        return (
-            <AbstractPage type="jobs" filterStatus={this.filterStatus} filters={this.filters}></AbstractPage>
+           <div>
+                <h1 style={{marginTop: "80px", color: "black", textAlign: "center"}}>Job Opportunities</h1> 
+                <p style={{textAlign: "center", color: "black"}}> Search for jobs posted by brothers </p>
+                <AbstractPage type="jobs" filterStatus={this.filterStatus} filters={this.filters}></AbstractPage>
+            </div>
        )
    }
 }

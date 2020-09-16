@@ -21,14 +21,14 @@ class AbstractPage extends React.Component{
             modalVisible: false,
             data: [],
             filteredData: [],
-            password : null,
+            password : "om3gath3ta",
             loadStatus: "loaded",
             filterStatus : props.filterStatus,
             filters: props.filters 
         }
         this.updateFilter = this.updateFilter.bind(this)
         this.filterData = this.filterData.bind(this)
-        this.loadData("not implemented yet", null)
+        this.loadData("not implemented yet", "om3gath3ta")
     }
 
     loadData(){
@@ -91,7 +91,23 @@ class AbstractPage extends React.Component{
             }
         });
 
-        this.setState({filteredData: new_filtered_data})
+        this.setState({filteredData: this.sortByTime(new_filtered_data)})
+    }
+
+    sortByTime(array){
+        array.sort(function(x, y) {
+            x = new Date(x);
+            y = new Date(y);
+            if (x > y) {
+              return -1;
+            }
+            if (x < y) {
+              return 1;
+            }
+            return 0;
+          });
+
+        return array;
     }
 
     updateFilter(filter, value){

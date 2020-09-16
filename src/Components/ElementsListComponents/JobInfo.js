@@ -12,7 +12,7 @@ const scrollStyle = {
 const label = {
     marginBottom: "0px",
     fontSize: "10px",
-    color: "rgb(200, 200, 255)"
+    color: "#D4AF37"
 }
 
 function offeringReferral(value){
@@ -42,6 +42,10 @@ function JobInfo(props) {
                         <Col>
                             <p style={label}>Submission from</p>
                             <p>{value["first_name"]}{" " + value["last_name"]}</p>
+                        </Col>
+                        <Col>
+                            <p style={label}>Submitted on</p>
+                            <p>{" " + (value["timestamp"].split(" "))[0]}</p>
                         </Col>
                     </Row>
                     <Row>
