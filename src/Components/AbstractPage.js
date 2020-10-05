@@ -21,14 +21,14 @@ class AbstractPage extends React.Component{
             modalVisible: false,
             data: [],
             filteredData: [],
-            password : "om3gath3ta",
+            password : "",
             loadStatus: "loaded",
             filterStatus : props.filterStatus,
             filters: props.filters 
         }
         this.updateFilter = this.updateFilter.bind(this)
         this.filterData = this.filterData.bind(this)
-        this.loadData("not implemented yet", "om3gath3ta")
+        this.loadData("not implemented yet", "")
     }
 
     loadData(){
