@@ -40,9 +40,9 @@ function genToken(req){
     let time = new Date()
     verifiedTokens.push(token)
     timestamps.push(0)
-    return {"pass_accepted": true, "token": token, "message": "This is for you... Enjoy it!"}
+    return {"pass_accepted": true, "token": token, "message": "Correct Token"}
   }
-  return {"pass_accepted": false, "token": null, "message": "That's the wrong passwrod binch >:("}
+  return {"pass_accepted": false, "token": null, "message": "Wrong Password"}
 }
  
 async function jobHandler(req) {
@@ -50,7 +50,7 @@ async function jobHandler(req) {
     data = await new Promise(function (resolve) {jobData(public_auth, resolve)})
     return {"token_accepted": true, "data": JSON.stringify(data)}
   }
-  return {"token_accepted": false, "data": "sorry king your token expired. Keep your head up tho"}
+  return {"token_accepted": false, "data": "Token Expired"}
 }
 
 async function reviewHandler(req) {
@@ -58,7 +58,7 @@ async function reviewHandler(req) {
     data = await new Promise(function (resolve) {reviewData(public_auth, resolve)})
     return {"token_accepted": true, "data": JSON.stringify(data)}
   }
-  return {"token_accepted": false, "data": "sorry king your token expired. Keep your head up tho"}
+  return {"token_accepted": false, "data": "Token Expired"}
 }
 
 
