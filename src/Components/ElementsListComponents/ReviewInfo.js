@@ -1,26 +1,30 @@
 import React from 'react';
-import { Navbar, Nav, Tab, Row, Col } from 'react-bootstrap'
+import { Container, Nav, Tab, Row, Col, Card, Tabs } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../App.css';
 
 
 const scrollStyle = {
-    height: "550px", 
-    overflowY:"scroll"
+    height: "575px", 
+    overflowY:"scroll",
+    padding: "10px"
+}
+
+const pad = {
+    paddingTop: "20px"
 }
 
 const label = {
     marginBottom: "0px",
-    fontSize: "10px",
-    color: "rgb(200, 200, 255)"
+    fontSize: "15px",
+    color: "#80A4ED"
 }
 
 function work(value){
     if (value["share_work_optional"][0] == "Y" || value["share_internship_optional"][0] == "N" || value["share_internship_optional"][0] == "W"){
         return (
-            <div>
-                <h3 style={{textAlign: "left"}}>Work Experience</h3>
-                <div style={{maxHeight: "300px", overflow:"scroll", backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
+            <Tab.Pane eventKey="work">
+                <div style={{maxHeight:"410px", overflow:"scroll", backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
                     <Row>
                         <Col>
                             <p style={label}>Start Date</p>
@@ -68,7 +72,7 @@ function work(value){
                         </Col>
                     </Row>
                 </div>
-            </div>
+            </Tab.Pane>
         )
     }
     return
@@ -77,9 +81,8 @@ function work(value){
 function interview(value){
     if (value["share_internship_optional"][0] == "Y"){
         return (
-            <div>
-                <h3 style={{textAlign: "left"}}>Interview Experience</h3>
-                <div style={{maxHeight: "300px", overflow:"scroll", backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
+            <Tab.Pane eventKey="interview">
+                <div style={{maxHeight:"410px", overflow:"scroll", backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
                     <Row>
                         <Col>
                             <p style={label}>Interview Type</p>
@@ -101,21 +104,13 @@ function interview(value){
                     <Row>
                         <Col>
                             <p style={label}>Difficulty Level (out of 5)</p>
-                            <p>{value["difficulty_level"]}</p>
-                        </Col>
-                        <Col>
-                            <p style={label}>Why?</p>
-                            <p>{value["difficulty_explanation"]}</p>
+                            <p>{value["difficulty_level"] + ' - ' + value["difficulty_explanation"]}</p>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
                             <p style={label}>Enjoyable Level (out of 5)</p>
-                            <p>{value["enjoyable_level"]}</p>
-                        </Col>
-                        <Col>
-                            <p style={label}>Why?</p>
-                            <p>{value["enjoyable_explanation"]}</p>
+                            <p>{value["enjoyable_level"] + ' - ' + value["enjoyable_explanation"]}</p>
                         </Col>
                     </Row>
                     <Row>
@@ -134,50 +129,95 @@ function interview(value){
                             <p>{value["additional"]}</p>
                         </Col>
                     </Row>
-                    
                 </div>
-            </div>
+            </Tab.Pane>
         )
     }
     return
+}
+
+function renderTabs(value) {
+    if (work(value) != undefined && interview(value) != undefined) {
+        return (
+            <Tab.Container defaultActiveKey="interview">
+                <Nav variant="tabs" defaultActiveKey="interview">
+                    <Nav.Item>
+                        <Nav.Link eventKey="interview">Interview Experience</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link eventKey="work">Work Experience</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                <Tab.Content style={pad}>
+                    {interview(value)}
+                    {work(value)}
+                </Tab.Content>
+            </Tab.Container>
+        )
+    } else if (work(value) != undefined && interview(value) == undefined) {
+        return (
+            <Tab.Container defaultActiveKey="work">
+                <Nav variant="tabs" defaultActiveKey="work">
+                    <Nav.Item>
+                        <Nav.Link eventKey="work">Work Experience</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                <Tab.Content style={pad}>
+                    {work(value)}
+                </Tab.Content>
+            </Tab.Container>
+        )
+    } else {
+        return (
+            <Tab.Container defaultActiveKey="interview">
+                <Nav variant="tabs" defaultActiveKey="interview">
+                    <Nav.Item>
+                        <Nav.Link eventKey="interview">Interview Experience</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                <Tab.Content style={pad}>
+                    {interview(value)}
+                </Tab.Content>
+            </Tab.Container>
+        )
+    }
 }
 
 function ReviewInfo(props) {
     return (
         props.data.map((value, index) => (
             <Tab.Pane eventKey={"eventNum_" + index.toString()}>
-            <div style={scrollStyle}>
-                <Row>
-                    <Col>
-                        <p style={label}>{value["company_type"]}</p>
-                        <h3 style={{textAlign: "left"}}>{value["company_title"]}</h3>
-                        
-                    </Col>
-                    <Col>
-                        <p style={label}>Submission from</p>
-                        <p>{value["first_name"]}{" " + value["last_name"]}</p>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <p style={label}>Position</p>
-                        <p>{value["position_title"]}</p>
-                    </Col>
-                    <Col>
-                        <p style={label}>Contact</p>
-                        <p>{value["contact"]}</p>
-                    </Col>
-                </Row>
-
-                {interview(value)}
-                {work(value)}
-            </div>
-            
+                <div style={scrollStyle}>
+                    <Row>
+                        <Col>
+                            <p style={label}>{value["company_type"]}</p>
+                            <p style={{textAlign: "left"}}>{value["company_title"]}</p>
+                            
+                        </Col>
+                        <Col>
+                            <p style={label}>Submission from</p>
+                            <p>{value["first_name"]}{" " + value["last_name"]}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <p style={label}>Position</p>
+                            <p>{value["position_title"]}</p>
+                        </Col>
+                        <Col>
+                            <p style={label}>Contact</p>
+                            <p>{value["contact"]}</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            {renderTabs(value)}
+                        </Col>
+                    </Row>
+                </div>
             </Tab.Pane>
-
-          )
+        )
     ))
-    
 }
 
 export default ReviewInfo;

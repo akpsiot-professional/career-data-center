@@ -1,12 +1,12 @@
 import React from 'react';
-import { Navbar, Nav, Tab, Row, Col } from 'react-bootstrap'
+import { Navbar, Nav, Tab, Row, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../App.css';
 import JobInfo from './JobInfo'
 import ReviewInfo from './ReviewInfo'
 
 const scrollStyle = {
-    height: "550px", 
+    height: "575px", 
     overflowY:"scroll",
     padding: "10px"
 }
@@ -22,26 +22,32 @@ function ElementsList(props) {
     var rows = renderRows(props.elementType, props.data)
     var content = renderContent(props.elementType, props.data)
     return (
-
         <Tab.Container id="left-tabs-example" defaultActiveKey="eventNum_0">
             <Row>
                 <Col sm={4}>
-                    <Nav variant="pills" className="flex-column">
-                        <h4 style={{textAlign: "left"}}>Postings</h4>
-                        <div class="shadow" style={scrollStyle}>
-                            {rows}
-                        </div>
-                    </Nav>
+                    <Card className="text-left">
+                        <Card.Header as="h4">Positions</Card.Header>
+                        <Card.Body>
+                            <Nav variant="pills" className="flex-column">
+                                <div style={scrollStyle}>
+                                    {rows}
+                                </div>
+                            </Nav>
+                        </Card.Body>
+                    </Card>
                 </Col>
-                <Col  sm={8}>
-                    <Tab.Content>
-                        <h4 style={{textAlign: "left"}}>Information</h4>
-                        {content}
-                    </Tab.Content>
+                <Col sm={8}>
+                    <Card className="text-left">
+                        <Card.Header as="h4">Information</Card.Header>
+                        <Card.Body>
+                            <Tab.Content>
+                                {content}
+                            </Tab.Content>
+                        </Card.Body>
+                    </Card>
                 </Col>
             </Row>
         </Tab.Container>
-
     )
 }
 
@@ -77,9 +83,9 @@ function renderRows(type, data){
 function renderContent(type, data){
     switch(type){
         case "jobs":
-        return (
-            <JobInfo data={data}></JobInfo>
-        )
+            return (
+                <JobInfo data={data}></JobInfo>
+            )
         case "reviews":
             return (
                 <ReviewInfo data={data}></ReviewInfo>
