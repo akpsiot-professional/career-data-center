@@ -7,11 +7,8 @@ import Modal from './modal/src';
 import Filter from './Filter'
 import DataManager from '../DataManager'
 import akpsi_logo from '../akpsi_logo.svg';
-import { Combobox } from 'react-widgets'
 
 import 'react-widgets/dist/css/react-widgets.css';
-
-
 
 class AbstractPage extends React.Component{
     constructor(props){
@@ -24,11 +21,14 @@ class AbstractPage extends React.Component{
             password : "",
             loadStatus: "loaded",
             filterStatus : props.filterStatus,
-            filters: props.filters 
+            filters: props.filters,
+            width: 0,
+            height: 0, 
         }
-        this.updateFilter = this.updateFilter.bind(this)
-        this.filterData = this.filterData.bind(this)
-        this.loadData("not implemented yet", "")
+        this.updateFilter = this.updateFilter.bind(this);
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+        this.filterData = this.filterData.bind(this);
+        this.loadData("not implemented yet", "");
     }
 
     loadData(){
@@ -71,6 +71,19 @@ class AbstractPage extends React.Component{
 
     handleChange(event) {
         this.setState({password: event.target.value})
+    }
+
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
+      
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+      
+    updateWindowDimensions() {
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
 
     filterData(){
@@ -160,13 +173,15 @@ class AbstractPage extends React.Component{
                 </Container>  
                 
             )
-        }else {
+        } else {
             return (
-                <Container fluid className="App">
-                    {this.renderModal()}
-                    <Filter data={this.state.data} filters={this.state.filters} change={this.updateFilter} filter={this.filterData}></Filter>
-                    <ElementsList elementType={this.type} data={this.state.filteredData}/>
-                </Container>
+                <div style={{maxHeight:this.state.height, maxWidth:this.state.width}}>
+                    <Container fluid className="App">
+                        {this.renderModal()}
+                        <Filter data={this.state.data} filters={this.state.filters} change={this.updateFilter} filter={this.filterData}></Filter>
+                        <ElementsList elementType={this.type} data={this.state.filteredData} height={this.state.height} width={this.state.width}/>
+                    </Container>
+                </div>
             )
         }
         

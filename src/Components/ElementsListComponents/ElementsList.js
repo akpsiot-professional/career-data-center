@@ -1,14 +1,12 @@
 import React from 'react';
-import { Navbar, Nav, Tab, Row, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Nav, Tab, Row, Col, Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../App.css';
 import JobInfo from './JobInfo'
 import ReviewInfo from './ReviewInfo'
 
 const scrollStyle = {
-    height: "575px", 
     overflowY:"scroll",
-    padding: "10px"
 }
 
 const label = {
@@ -20,24 +18,24 @@ const label = {
 // TODO: add props that let us specify whether we want a job postings list or a reviews list
 function ElementsList(props) {
     var rows = renderRows(props.elementType, props.data)
-    var content = renderContent(props.elementType, props.data)
+    var content = renderContent(props.elementType, props.data, props.height)
     return (
         <Tab.Container id="left-tabs-example" defaultActiveKey="eventNum_0">
             <Row>
                 <Col sm={4}>
-                    <Card className="text-left">
+                    <Card className="text-left" style={{height: props.height-150}}>
                         <Card.Header as="h4">Positions</Card.Header>
-                        <Card.Body>
-                            <Nav variant="pills" className="flex-column">
-                                <div style={scrollStyle}>
+                        <div style={scrollStyle}>
+                            <Card.Body>
+                                <Nav variant="pills" className="flex-column">
                                     {rows}
-                                </div>
-                            </Nav>
-                        </Card.Body>
+                                </Nav>
+                            </Card.Body>
+                        </div>
                     </Card>
                 </Col>
                 <Col sm={8}>
-                    <Card className="text-left">
+                    <Card className="text-left" style={{height: props.height-150}}>
                         <Card.Header as="h4">Information</Card.Header>
                         <Card.Body>
                             <Tab.Content>
@@ -80,7 +78,7 @@ function renderRows(type, data){
 
 
 
-function renderContent(type, data){
+function renderContent(type, data, height){
     switch(type){
         case "jobs":
             return (
@@ -88,7 +86,7 @@ function renderContent(type, data){
             )
         case "reviews":
             return (
-                <ReviewInfo data={data}></ReviewInfo>
+                <ReviewInfo data={data} height={height}></ReviewInfo>
             )
     }
 }

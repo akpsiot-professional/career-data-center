@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Navbar, Nav, Tab, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css';
 import { Combobox } from 'react-widgets'
