@@ -178,8 +178,10 @@ class AbstractPage extends React.Component{
                 <div style={{maxHeight:this.state.height, maxWidth:this.state.width}}>
                     <Container fluid className="App">
                         {this.renderModal()}
-                        <Filter data={this.state.data} filters={this.state.filters} change={this.updateFilter} filter={this.filterData}></Filter>
-                        <ElementsList elementType={this.type} data={this.state.filteredData} height={this.state.height} width={this.state.width}/>
+                        <div style={{paddingTop: "100px"}}>
+                            <Filter data={this.state.data} filters={this.state.filters} change={this.updateFilter} filter={this.filterData}></Filter>
+                            <ElementsList elementType={this.type} data={this.state.filteredData} height={this.state.height} width={this.state.width}/>
+                        </div>
                     </Container>
                 </div>
             )

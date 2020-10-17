@@ -47,9 +47,15 @@ function work(value){
                         <p style={label}>How Enjoyable? (Out of 5)</p>
                         <p>{value["enjoybale_rating"]}</p>
                     </Col>
+                    {/* <Col>
+                        <p style={label}>Compensation</p>
+                        <p>{value["compensation"] ? value["compensation"] !== null || value["compensation"].length > 0 : "-"}</p>
+                    </Col> */}
+                </Row>
+                <Row>
                     <Col>
                         <p style={label}>Compensation</p>
-                        <p>{value["compensation"]}</p>
+                        <p>{(value["compensation"] !== undefined && value["compensation"] !== "") ? value["compensation"] : '-'}</p>
                     </Col>
                 </Row>
                 <Row>
@@ -129,7 +135,7 @@ function interview(value){
 function renderTabs(value, height) {
     if (work(value) != undefined && interview(value) != undefined) {
         return (
-            <Tab.Container defaultActiveKey="interview" style={{height: height-300, backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
+            <Tab.Container defaultActiveKey="interview" style={{height: height-400, backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
                 <Nav variant="tabs" defaultActiveKey="interview">
                     <Nav.Item>
                         <Nav.Link eventKey="interview">Interview Experience</Nav.Link>
@@ -146,7 +152,7 @@ function renderTabs(value, height) {
         )
     } else if (work(value) != undefined && interview(value) == undefined) {
         return (
-            <Tab.Container defaultActiveKey="work" style={{height: height-300, backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
+            <Tab.Container defaultActiveKey="work" style={{height: height-400, backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
                 <Nav variant="tabs" defaultActiveKey="work">
                     <Nav.Item>
                         <Nav.Link eventKey="work">Work Experience</Nav.Link>
@@ -159,7 +165,7 @@ function renderTabs(value, height) {
         )
     } else {
         return (
-            <Tab.Container defaultActiveKey="interview" style={{height: height-300, backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
+            <Tab.Container defaultActiveKey="interview" style={{height: height-400, backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
                 <Nav variant="tabs" defaultActiveKey="interview">
                     <Nav.Item>
                         <Nav.Link eventKey="interview">Interview Experience</Nav.Link>
@@ -200,7 +206,7 @@ function ReviewInfo(props) {
                 </Row>
                 <Row>
                     <Col>
-                        <div style={{height: props.height-350, overflowY: "scroll", overflowX: "hidden"}}>
+                        <div style={{height: props.height-450, overflowY: "scroll", overflowX: "hidden"}}>
                             {renderTabs(value)}
                         </div>
                     </Col>

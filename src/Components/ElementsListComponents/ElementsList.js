@@ -23,7 +23,7 @@ function ElementsList(props) {
         <Tab.Container id="left-tabs-example" defaultActiveKey="eventNum_0">
             <Row>
                 <Col sm={4}>
-                    <Card className="text-left" style={{height: props.height-150}}>
+                    <Card className="text-left" style={{height: props.height-250}}>
                         <Card.Header as="h4">Positions</Card.Header>
                         <div style={scrollStyle}>
                             <Card.Body>
@@ -35,7 +35,7 @@ function ElementsList(props) {
                     </Card>
                 </Col>
                 <Col sm={8}>
-                    <Card className="text-left" style={{height: props.height-150}}>
+                    <Card className="text-left" style={{height: props.height-250}}>
                         <Card.Header as="h4">Information</Card.Header>
                         <Card.Body>
                             <Tab.Content>
