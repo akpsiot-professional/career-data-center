@@ -47,10 +47,6 @@ function work(value){
                         <p style={label}>How Enjoyable? (Out of 5)</p>
                         <p>{value["enjoybale_rating"]}</p>
                     </Col>
-                    {/* <Col>
-                        <p style={label}>Compensation</p>
-                        <p>{value["compensation"] ? value["compensation"] !== null || value["compensation"].length > 0 : "-"}</p>
-                    </Col> */}
                 </Row>
                 <Row>
                     <Col>
