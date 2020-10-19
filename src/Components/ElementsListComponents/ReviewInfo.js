@@ -45,7 +45,7 @@ function work(value){
                     </Col>
                     <Col>
                         <p style={label}>How Enjoyable? (Out of 5)</p>
-                        <p>{value["enjoybale_rating"]}</p>
+                        <p>{value["enjoyable_rating"]}</p>
                     </Col>
                 </Row>
                 <Row>
