@@ -15,6 +15,10 @@ const label = {
     color: "#D4AF37"
 }
 
+const highlightColor = {
+    backgroundColor: "#C68892ff"
+}
+
 // TODO: add props that let us specify whether we want a job postings list or a reviews list
 function ElementsList(props) {
     var rows = renderRows(props.elementType, props.data)
@@ -65,7 +69,7 @@ function renderRows(type, data){
         case "reviews":
             return (
                 data.map((value, index) => (
-                    <Nav.Item >
+                    <Nav.Item>
                         <Nav.Link eventKey={"eventNum_" + index.toString()}>
                                 <h5>{value["company_title"]}</h5>
                                 <p>{value["position_title"]}</p>

@@ -63,6 +63,27 @@
   color: #F6F7EB;
 }
 
+.nav-item > .nav-link.active {
+  background-color: #C68892ff;
+  color: white;
+}
+
+.nav-item > .nav-link.active > h5 {
+  color: white;
+}
+
+.nav-item > .nav-link.active > p {
+  color: white;
+}
+
+.nav-item > .nav-link > h5 {
+  color: #C68892ff;
+}
+
+.nav-item > .nav-link > p {
+  color: #C68892ff;
+}
+
 
 .shadow {
   -webkit-box-shadow: -2px 2px 14px -5px rgba(0,0,0,0.75);
