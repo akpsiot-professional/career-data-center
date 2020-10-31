@@ -8,6 +8,8 @@ import Filter from './Filter'
 import DataManager from '../DataManager'
 import akpsi_logo from '../akpsi_logo.svg';
 
+import { Redirect } from "react-router-dom";
+
 import 'react-widgets/dist/css/react-widgets.css';
 
 class AbstractPage extends React.Component{
@@ -24,6 +26,7 @@ class AbstractPage extends React.Component{
             filters: props.filters,
             width: 0,
             height: 0, 
+            redirect : null
         }
         this.updateFilter = this.updateFilter.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -35,17 +38,17 @@ class AbstractPage extends React.Component{
         this.setState({
             loadStatus : "loading"
         });
-        DataManager.getData(this.type, this.state.password).then(response => {
+        DataManager.getData(this.type).then(response => {
             if (response["error"]){
-                console.log(response["error_statement"])
-                this.openModal()
-                this.setState({
-                    loadStatus : "loaded"
-                });
+                if (response["error_num"] == 1){
+                    this.setState({ redirect: "/" });
+                }else {
+                    setTimeout(this.loadData(), 1000)
+                }
+                
             }else {
                 this.setState({
-                    data : response,
-                    loadStatus : "loaded"
+                    data : response["data"],
                 });
                 this.filterData()
             }
@@ -147,6 +150,9 @@ class AbstractPage extends React.Component{
 
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+          }
         if (this.state.data.length == 0){
             return (
                 <Container fluid className="App">
