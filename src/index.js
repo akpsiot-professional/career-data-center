@@ -10,7 +10,7 @@ import './App.css';
 import App from './App';
 import Jobs from './Components/Jobs';
 import Reviews from './Components/Reviews';
-import Resumes from './Components/Resumes';
+import More from './Components/More';
 import JobOpportunities from './Components/JobOpportunities';
 
 ReactDOM.render(
@@ -20,7 +20,7 @@ ReactDOM.render(
       <Route exact path="/" component={App} />
       <Route path="/jobs" component={Jobs} />
       <Route path="/reviews" component={Reviews} />
-      <Route path="/resumes" component={Resumes} />
+      <Route path="/more" component={More} />
 
     </Switch>
   </BrowserRouter>,

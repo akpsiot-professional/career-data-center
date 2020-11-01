@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import LandingPage from './Components/LandingPage'
 
+
 const landingpageStyle = {
   marginTop: "300px",
 };
@@ -14,7 +15,10 @@ const landingpageStyle = {
 
 function App() {
   return (
-    <LandingPage></LandingPage>
+    <div>
+      <LandingPage></LandingPage>
+    </div>
+    
   );
 }
 

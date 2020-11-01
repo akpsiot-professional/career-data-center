@@ -34,18 +34,10 @@ export default class DataManager {
     static getJobData(){
         console.log("token: ", this.token)
         return new Promise(resolve => {
-            if (this.searchPending){
-                if (this.job_data == null){
-                    resolve({"error": true, "error_num": 2})
-                }else {
-                    resolve({"error": false, "data": this.job_data})
-                }
+            if (this.job_data == null){
+                resolve({"error": true, "error_num": 1})
             }else {
-                if (this.job_data == null){
-                    resolve({"error": true, "error_num": 1})
-                }else {
-                    resolve({"error": false, "data": this.job_data})
-                }
+                resolve({"error": false, "data": this.job_data})
             }
         })
     }
@@ -54,18 +46,10 @@ export default class DataManager {
     static getReviewData(){
         console.log("token: ", this.token)
         return new Promise(resolve => {
-            if (this.searchPending){
-                if (this.review_data == null){
-                    resolve({"error": true, "error_statement": 2})
-                }else {
-                    resolve({"error": false, "data": this.review_data})
-                }
+            if (this.review_data == null){
+                resolve({"error": true, "error_statement": 1})
             }else {
-                if (this.review_data == null){
-                    resolve({"error": true, "error_statement": 1})
-                }else {
-                    resolve({"error": false, "data": this.review_data})
-                }
+                resolve({"error": false, "data": this.review_data})
             }
         })
     }
