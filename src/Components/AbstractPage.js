@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css';
 import { Container, Row, Col} from 'react-bootstrap';
 import ElementsList from './ElementsListComponents/ElementsList'
-import Modal from './modal/src';
 import Filter from './Filter'
 import DataManager from '../DataManager'
 import akpsi_logo from '../akpsi_logo.svg';
@@ -30,7 +29,7 @@ class AbstractPage extends React.Component{
         this.updateFilter = this.updateFilter.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.filterData = this.filterData.bind(this);
-        this.loadData("not implemented yet", "");
+        this.loadData();
     }
 
     loadData(){

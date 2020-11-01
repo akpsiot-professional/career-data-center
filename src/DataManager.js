@@ -1,5 +1,3 @@
-import {Subject} from 'rxjs'
-
 export default class DataManager {
 
     //Do that localStorage thing
@@ -27,12 +25,15 @@ export default class DataManager {
                 this.getReviewData().then(value => {
                     resolve(value)
                 })
+            }else if (type == "forms"){
+                this.getFormData().then(value => {
+                    resolve(value)
+                })
             }
         })
     }
 
     static getJobData(){
-        console.log("token: ", this.token)
         return new Promise(resolve => {
             if (this.job_data == null){
                 resolve({"error": true, "error_num": 1})
@@ -44,12 +45,22 @@ export default class DataManager {
 
     
     static getReviewData(){
-        console.log("token: ", this.token)
         return new Promise(resolve => {
             if (this.review_data == null){
                 resolve({"error": true, "error_statement": 1})
             }else {
                 resolve({"error": false, "data": this.review_data})
+            }
+        })
+    }
+
+    static getFormData(){
+        return new Promise(resolve => {
+            if (this.job_data == null || this.review_data == null){
+                resolve({"error": true, "error_num": 1})
+            }else {
+                let forms = {"job_form": this.job_data[0]["form"], "review_form":this.review_data[0]["form"]}
+                resolve({"error": false, "data": forms})
             }
         })
     }

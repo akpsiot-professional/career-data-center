@@ -2,9 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css';
 import { Container, Row, Col, Jumbotron, Button, Card} from 'react-bootstrap';
-import ElementsList from './ElementsListComponents/ElementsList'
 import Modal from './modal/src';
-import Filter from './Filter'
 import DataManager from '../DataManager'
 import akpsi_logo from '../akpsi_logo.svg';
 
@@ -164,6 +162,7 @@ class LandingPage extends React.Component{
 
 
     render() {
+        
         return (
             <div>
                 <Canvas></Canvas>

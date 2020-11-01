@@ -3,9 +3,7 @@ import {Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css';
-import akpsi_logo from '../akpsi_logo.svg';
 import akpsi_sticker from '../akpsiot_sticker.svg';
-import Filter from './Filter'
 
 import jobs_icon from '../icons/jobs.png'
 import reviews_icon from '../icons/reviews.png'
