@@ -25,10 +25,9 @@ class LandingPage extends React.Component{
         this.attempts = 0
         this.state = {
             modalVisible: false,
-            password : "",
+            password : "om3gath3ta",
             loading : false,
             error_message: "",
-            gif : "",
         }
 
         this.loadData();
@@ -176,7 +175,7 @@ class LandingPage extends React.Component{
                                 <p>
                                     The goal for this page is to be a home for OT's career development opportunities. You must be signed in to access the portal's data.
                                     If you have any suggestions or concerns about this website, feel free to email <strong>alumni.akpsiot@gmail.com</strong>.
-                                    If you have any ideas for professional development, send them to <strong>Alex's email</strong>
+                                    If you have any ideas for professional development, send them to <strong>professional@akpsi-umd.org</strong>
                                 </p>
                                 <Button variant="primary">This button does nothing :(</Button>
                             </Jumbotron>

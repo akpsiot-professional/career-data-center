@@ -13,7 +13,7 @@ function Filter(props) {
                 <Row>
                     {props.filters.map((key, __) => (
                         <Col>
-                            <p style={{fontSize: "10px", marginBottom: "0px"}}>{removeUnderscore(key)}</p>
+                            <p style={{fontSize: "10px", marginBottom: "0px", color: 'rgb(152, 30, 50)'}}>{removeUnderscore(key)}</p>
                             <Combobox style={{width: "100%"}}data={parseSelection(key, props.data)} onChange={value => props.change(key, value)} caseSensitive={false} filter='contains' placeholder="All" />
                         </Col>
                     ))}

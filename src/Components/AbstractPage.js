@@ -65,7 +65,8 @@ class AbstractPage extends React.Component{
     }
       
     updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        let heightVal = Math.max(window.innerHeight, 800)
+        this.setState({ width: window.innerWidth, height: heightVal });
     }
 
     filterData(){

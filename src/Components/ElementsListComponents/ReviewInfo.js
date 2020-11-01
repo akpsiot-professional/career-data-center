@@ -11,7 +11,7 @@ const pad = {
 const label = {
     marginBottom: "0px",
     fontSize: "15px",
-    color: "#80A4ED"
+    color: 'rgb(152, 30, 50)'
 }
 
 function work(value){
