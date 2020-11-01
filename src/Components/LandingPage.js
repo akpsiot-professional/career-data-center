@@ -25,7 +25,7 @@ class LandingPage extends React.Component{
         this.attempts = 0
         this.state = {
             modalVisible: false,
-            password : "om3gath3ta",
+            password : "",
             loading : false,
             error_message: "",
         }
