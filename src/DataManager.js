@@ -12,6 +12,7 @@ export default class DataManager {
 
     static job_data = null;
     static review_data = null;
+    static resume_data = null;
 
     static searchPending = false;
 
@@ -27,6 +28,10 @@ export default class DataManager {
                 })
             }else if (type == "forms"){
                 this.getFormData().then(value => {
+                    resolve(value)
+                })
+            }else if (type == "resumes"){
+                this.getResumeData().then(value => {
                     resolve(value)
                 })
             }
@@ -61,6 +66,16 @@ export default class DataManager {
             }else {
                 let forms = {"job_form": this.job_data[0]["form"], "review_form":this.review_data[0]["form"]}
                 resolve({"error": false, "data": forms})
+            }
+        })
+    }
+
+    static getResumeData(){
+        return new Promise(resolve => {
+            if (this.resume_data == null){
+                resolve({"error": true, "error_num": 1})
+            }else {
+                resolve({"error": false, "data": this.resume_data})
             }
         })
     }
@@ -115,14 +130,21 @@ export default class DataManager {
         return new Promise(resolve => {
             this.reqData("jobs").then(job_response => {
                 if(job_response["token_accepted"]){
+
+
                     this.reqData("reviews").then(review_response => {
                         if(review_response["token_accepted"]){
-                            this.job_data = JSON.parse(job_response["data"])
-                            this.review_data = JSON.parse(review_response["data"])
-                            resolve({"error": false})
-                        }else {
-                            resolve({"error": true, "error_statement": "2: token not accepted"})
-                            this.token = null
+                            this.reqData("resumes").then(resume_response => {
+                                if(resume_response["token_accepted"]){
+                                    this.job_data = JSON.parse(job_response["data"])
+                                    this.review_data = JSON.parse(review_response["data"])
+                                    this.resume_data = JSON.parse(resume_response["data"])
+                                    resolve({"error": false})
+                                }else {
+                                    resolve({"error": true, "error_statement": "2: token not accepted"})
+                                    this.token = null
+                                }
+                            })
                         }
                     })
                 }else {

@@ -33,10 +33,9 @@ class More extends React.Component{
             if (response["error"]){
                 this.setState({ redirect: "/" });
             }else {
-                console.log(response["job_form"])
                 this.setState({
-                    job_form : response["job_form"],
-                    review_form : response["review_form"],
+                    job_form : response["data"]["job_form"],
+                    review_form : response["data"]["review_form"],
                 });
             }
         }

@@ -11,7 +11,7 @@ import App from './App';
 import Jobs from './Components/Jobs';
 import Reviews from './Components/Reviews';
 import More from './Components/More';
-import JobOpportunities from './Components/JobOpportunities';
+import Resumes from './Components/Resumes'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -21,7 +21,7 @@ ReactDOM.render(
       <Route path="/jobs" component={Jobs} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/more" component={More} />
-
+      <Route path="/resumes" component={Resumes} />
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

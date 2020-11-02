@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../App.css';
 import JobInfo from './JobInfo'
 import ReviewInfo from './ReviewInfo'
+import ResumeInfo from './ResumeInfo'
 
 const scrollStyle = {
     overflowY:"scroll",
@@ -55,8 +56,17 @@ function ElementsList(props) {
 }
 
 function renderRows(type, data){
-    switch(type){
-        case "jobs":
+    if (type == "resumes"){
+        return (
+            data.map((value, index) => (
+                <Nav.Item>
+                        <Nav.Link eventKey={"eventNum_" + index.toString()}>
+                                <h5>{value["first_name"] + " " + value["last_name"]}</h5>
+                        </Nav.Link>
+                    </Nav.Item>
+              ))
+        )
+    }else {
         return (
             data.map((value, index) => (
                 <Nav.Item>
@@ -67,17 +77,6 @@ function renderRows(type, data){
                     </Nav.Item>
               ))
         )
-        case "reviews":
-            return (
-                data.map((value, index) => (
-                    <Nav.Item>
-                        <Nav.Link eventKey={"eventNum_" + index.toString()}>
-                                <h5>{value["company_title"]}</h5>
-                                <p>{value["position_title"]}</p>
-                        </Nav.Link>
-                    </Nav.Item>
-                  ))
-            )
     }
 }
 
@@ -92,6 +91,10 @@ function renderContent(type, data, height){
         case "reviews":
             return (
                 <ReviewInfo data={data} height={height}></ReviewInfo>
+            )
+        case "resumes":
+            return (
+                <ResumeInfo data={data} height={height}></ResumeInfo>
             )
     }
 }

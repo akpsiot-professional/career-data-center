@@ -5,12 +5,15 @@ import { Container, Row, Col, Jumbotron, Button, Card} from 'react-bootstrap';
 import Modal from './modal/src';
 import DataManager from '../DataManager'
 import akpsi_logo from '../akpsi_logo.svg';
+import { Link } from 'react-router-dom'
+
 
 import Canvas from './Canvas'
 
 import stock_3 from '../images/stock_3.jpg'
 import stock_4 from '../images/stock_4.jpg'
 import stock_5 from '../images/stock_5.jpg'
+import stock_6 from '../images/stock_6.jpg'
 
 import 'react-widgets/dist/css/react-widgets.css';
 
@@ -156,11 +159,6 @@ class LandingPage extends React.Component{
         }
         
     }
-
-    
-
-
-
     render() {
         
         return (
@@ -176,7 +174,7 @@ class LandingPage extends React.Component{
                                     If you have any suggestions or concerns about this website, feel free to email <strong>alumni.akpsiot@gmail.com</strong>.
                                     If you have any ideas for professional development, send them to <strong>professional@akpsi-umd.org</strong>
                                 </p>
-                                <Button variant="primary">This button does nothing :(</Button>
+                                <Button variant="warning">This button does nothing :(</Button>
                             </Jumbotron>
                         </Col>
                     </Row>
@@ -189,9 +187,9 @@ class LandingPage extends React.Component{
                                     <Card.Text>
                                         Check out the latest job postings. Sort by company, position type, and more.
                                     </Card.Text>
-                                    <a href="/jobs">
-                                        <Button>Go to Jobs</Button>
-                                    </a>
+                                    <Link to="/jobs">
+                                        <Button variant="warning">Go to Jobs</Button>
+                                    </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -203,9 +201,9 @@ class LandingPage extends React.Component{
                                     <Card.Text>
                                         Find reviews of working and interview experience at many companies.
                                     </Card.Text>
-                                    <a href="/reviews">
-                                        <Button>Go to Reviews</Button>
-                                    </a>
+                                    <Link to="/reviews">
+                                        <Button variant="warning">Go to Reviews</Button>
+                                    </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -217,12 +215,31 @@ class LandingPage extends React.Component{
                                     <Card.Text>
                                         Do you have an opportunity or experience that you could share?
                                     </Card.Text>
-                                    <a href="/more">
-                                        <Button>Submit Posts</Button>
-                                    </a>
+                                    <Link to="/more">
+                                        <Button variant="warning">Submit Posts</Button>
+                                    </Link>
                                 </Card.Body>
                             </Card>
                         </Col>
+                    </Row>
+                    <Row style={{marginTop:"20px"}}>
+                        <Col >
+                        <Card style={this.cardStyle}>
+                                <Card.Img variant="top" src={stock_6} />
+                                <Card.Body>
+                                    <Card.Title>Find a Resume</Card.Title>
+                                    <Card.Text>
+                                        Sort through brothers' resumes by difference tracks
+                                    </Card.Text>
+                                    <Link  to="/resumes">
+                                        <Button variant="warning">Go to Resumes</Button>
+                                    </Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col></Col>
+                        <Col></Col>
+
                     </Row>
                     
                     {this.renderModal()}
