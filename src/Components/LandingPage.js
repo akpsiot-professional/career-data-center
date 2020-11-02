@@ -116,19 +116,32 @@ class LandingPage extends React.Component{
     
     }
 
+    renderBlur(){
+        if (this.state.modalVisible){
+            return (<div style={{position: "absolute", left: "0px", top: "0px", width: "100%", height: "100%", backdropFilter: "blur(10px)", backgroundColor: "rgba(255, 255, 255, 0.1)"}}></div>)
+        }else {
+            return ""
+        }
+    }
+
     renderModal(){
+        //onClickAway={() => this.closeModal()} - insert into modal if needed?
+
+        /*
+        <Col xs={4}>
+                                <a  href="javascript:void(0);" onClick={() => this.closeModal(false)}><p style={this.linkStyle}>Close</p></a>
+                            </Col>
+                            */
+                           
         if (!this.state.loading){
             return (
-                <Modal visible={this.state.modalVisible} width="350" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <Container>
+                <div>
+                    {this.renderBlur()}
+                <Modal visible={this.state.modalVisible} width="350" height="200" effect="fadeInUp" >
+                    <Container style={{padding:"10px"}}>
                         <Row>
                             <Col>
                                 <h1 style={{color:'black', textAlign: 'center'}}>Enter Password</h1>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <input style={{marginTop: "30px", width: "100%"}} type="text" value={this.state.password} onChange={this.handleChange.bind(this)}/>
                             </Col>
                         </Row>
                         <Row>
@@ -137,21 +150,28 @@ class LandingPage extends React.Component{
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={4}>
-                                <a  href="javascript:void(0);" onClick={() => this.closeModal(false)}><p style={this.linkStyle}>Close</p></a>
+                            <Col>
+                                <input placeholder={"Password..."} style={{marginTop: "10px", width: "100%"}} type="text" value={this.state.password} onChange={this.handleChange.bind(this)}/>
                             </Col>
-                            <Col xs={{span: 4, offset: 4}}>
-                                <a  href="javascript:void(0);" onClick={() => this.closeModal(true)}> <p style={this.linkStyle}>Submit</p></a>
+                        </Row>
+                        <Row>
+                            
+                            
+                            <Col style={{marginTop: "10px"}} xs={{span: 4, offset: 4}}>
+                                <a  href="javascript:void(0);" onClick={() => this.closeModal(true)}> 
+                                    <Button variant="warning">Submit</Button>
+                                </a>
                             </Col>
                         </Row>
 
                     </Container>
                 </Modal>
+                </div>
             )
         }else {
             return (
                 <Modal visible={this.state.modalVisible} width="350" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <img src={akpsi_logo} className="App-logo" alt="logo" />
+                    <img style={{width:"100%", height:"100%"}} src={akpsi_logo} className="App-logo" alt="logo" />
                 </Modal>
         )
             
@@ -221,9 +241,7 @@ class LandingPage extends React.Component{
                                 </Card.Body>
                             </Card>
                         </Col>
-                    </Row>
-                    <Row style={{marginTop:"20px"}}>
-                        <Col >
+                        <Col>
                         <Card style={this.cardStyle}>
                                 <Card.Img variant="top" src={stock_6} />
                                 <Card.Body>
@@ -237,10 +255,8 @@ class LandingPage extends React.Component{
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col></Col>
-                        <Col></Col>
-
                     </Row>
+                    
                     
                     {this.renderModal()}
                 </Container>

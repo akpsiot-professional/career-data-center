@@ -9,6 +9,7 @@ import jobs_icon from '../icons/jobs.png'
 import reviews_icon from '../icons/reviews.png'
 import more_icon from '../icons/plus.png'
 import document_icon from '../icons/document.png'
+import about_icon from '../icons/information.png'
 
 let iconStyle = {
     height: "20px",
@@ -27,6 +28,7 @@ function NavigationBar() {
                 <Nav.Link as={Link} to="/reviews"><img style={iconStyle} src={reviews_icon}></img>Reviews</Nav.Link>
                 <Nav.Link as={Link} to="/more"><img style={iconStyle} src={more_icon}></img>Submit Post</Nav.Link>
                 <Nav.Link as={Link} to="/resumes"><img style={iconStyle} src={document_icon}></img>Resumes</Nav.Link>
+                <Nav.Link as={Link} to="/about"><img style={iconStyle} src={about_icon}></img>About</Nav.Link>
             </Nav>
         </Navbar>
     )
