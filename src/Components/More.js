@@ -58,7 +58,7 @@ class More extends React.Component{
                                 <Card.Body>
                                     <Card.Title>Job Opportunities</Card.Title>
                                     <Card.Text>
-                                    Know of a job opportunity? Would you be willing to talk to those who are interested?
+                                        Know of an Entry-Level or Internship Opportunity?
                                     </Card.Text>
                                     <a href={this.state.job_form}>
                                         <Button>Post a Job Opportunity</Button>

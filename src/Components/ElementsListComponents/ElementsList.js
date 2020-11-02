@@ -25,12 +25,17 @@ const highlightColor = {
 function ElementsList(props) {
     var rows = renderRows(props.elementType, props.data)
     var content = renderContent(props.elementType, props.data, props.height)
+
+    var left_col = "Positions"
+    if (props.elementType == "resumes"){
+        left_col = "People"
+    }
     return (
         <Tab.Container id="left-tabs-example" defaultActiveKey="eventNum_0">
             <Row>
                 <Col sm={4}>
                     <Card className="text-left" style={{height: props.height-250, boxShadow: "0px 0px 14px -1px rgba(0,0,0,0.5)"}}>
-                        <Card.Header style={{backgroundColor: 'rgb(234, 171, 0)'}}as="h4">Positions</Card.Header>
+                        <Card.Header style={{backgroundColor: 'rgb(234, 171, 0)'}}as="h4">{left_col}</Card.Header>
                         <div style={scrollStyle}>
                             <Card.Body>
                                 <Nav variant="pills" className="flex-column">

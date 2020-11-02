@@ -23,7 +23,7 @@ class About extends React.Component{
                 <p style={this.pStyle}>Here are our ideas/todo for the site. If you have any ideas/suggestions for how to improve the site, please email: <strong>alumni.akpsiot@gmail.com</strong></p>
                 <p style={this.pStyle}>Rate my Professor</p>
                 <p style={this.pStyle}>Homework/Test Database</p>
-                <p></p>
+                <p style={this.pStyle}>Alumni Airtable Link</p>
             </div>
             
         )

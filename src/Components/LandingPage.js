@@ -113,12 +113,11 @@ class LandingPage extends React.Component{
     cardStyle = {
         boxShadow: "0px 0px 14px -1px rgba(0,0,0,0.5)",
         width: '100%'
-    
     }
 
     renderBlur(){
         if (this.state.modalVisible){
-            return (<div style={{position: "absolute", left: "0px", top: "0px", width: "100%", height: "100%", backdropFilter: "blur(10px)", backgroundColor: "rgba(255, 255, 255, 0.1)"}}></div>)
+            return (<div style={{position: "absolute", left: "0px", top: "0px", width: "150%", height: "150%", backdropFilter: "blur(10px)", backgroundColor: "rgba(255, 255, 255, 0.1)"}}></div>)
         }else {
             return ""
         }
@@ -170,9 +169,12 @@ class LandingPage extends React.Component{
             )
         }else {
             return (
-                <Modal visible={this.state.modalVisible} width="350" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <img style={{width:"100%", height:"100%"}} src={akpsi_logo} className="App-logo" alt="logo" />
-                </Modal>
+                <div>
+                    {this.renderBlur()}
+                    <Modal visible={this.state.modalVisible} width="350" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                        <img style={{width:"100%", height:"100%"}} src={akpsi_logo} className="App-logo" alt="logo" />
+                    </Modal>
+                </div>
         )
             
             
@@ -194,7 +196,14 @@ class LandingPage extends React.Component{
                                     If you have any suggestions or concerns about this website, feel free to email <strong>alumni.akpsiot@gmail.com</strong>.
                                     If you have any ideas for professional development, send them to <strong>professional@akpsi-umd.org</strong>
                                 </p>
-                                <Button variant="warning">This button does nothing :(</Button>
+                                <p>
+                                    Join the OT LinkedIn group!
+                                </p>
+
+                                <a href="https://www.linkedin.com/groups/2508929/">
+                                    <Button variant="warning">LinkedIn</Button>
+                                </a>
+                                
                             </Jumbotron>
                         </Col>
                     </Row>
@@ -247,7 +256,7 @@ class LandingPage extends React.Component{
                                 <Card.Body>
                                     <Card.Title>Find a Resume</Card.Title>
                                     <Card.Text>
-                                        Sort through brothers' resumes by difference tracks
+                                        Sort through brothers' resumes by difference tracks and find your path.
                                     </Card.Text>
                                     <Link  to="/resumes">
                                         <Button variant="warning">Go to Resumes</Button>
