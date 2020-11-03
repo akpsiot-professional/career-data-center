@@ -1,39 +1,24 @@
 export default class DataManager {
 
-    //Do that localStorage thing
-
     /*
     Error Types:
     Num: 1 (return to landing page), 2 (request again after timeout)
     */
 
     static password = null
-    static token = null
 
-    static job_data = null;
-    static review_data = null;
-    static resume_data = null;
-
-    static searchPending = false;
+    static data = null
 
     static getData(type) {
         return new Promise(resolve => {
-            if (type == "jobs"){
-                this.getJobData().then(value => {
-                    resolve(value)
-                })
-            }else if (type == "reviews"){
-                this.getReviewData().then(value => {
-                    resolve(value)
-                })
-            }else if (type == "forms"){
-                this.getFormData().then(value => {
-                    resolve(value)
-                })
-            }else if (type == "resumes"){
-                this.getResumeData().then(value => {
-                    resolve(value)
-                })
+            if (this.data == null){
+                resolve({"error": true, "error_num": 1})
+            }else {
+                if (type == "forms"){
+                    let forms = {"job_form": this.data["jobs"][0]["form"], "review_form":this.data["reviews"][0]["form"]}
+                    resolve({"error": false, "data": forms})
+                }
+                resolve({"error": false, "data": this.data[type]})
             }
         })
     }
@@ -80,16 +65,12 @@ export default class DataManager {
         })
     }
 
-    
-
     static loadData(password){
-        console.log("token: ", this.token)
         return new Promise(resolve => {
-            this.searchPending = true;
-            if (this.token == null){
+            let token = localStorage.getItem('OTPPtoken')
+            if (token == null || token == ""){
                 if (password == null){
                     if (this.password == null){
-                        this.searchPending = false;
                         resolve({"error": true, "error_statement": "1: no password submitted"})
                     }
                 }else {
@@ -97,19 +78,16 @@ export default class DataManager {
                 }
                 this.genToken().then(token_response=> {
                     if (token_response["pass_accepted"]){
-                        this.token = token_response["token"]
-                        this.reqFullData().then(job_response => {
-                            this.searchPending = false;
+                        localStorage.setItem('OTPPtoken', token_response["token"]);
+                        this.handleDataReq().then(job_response => {
                             resolve(job_response)
                         })
                     }else {
-                        this.searchPending = false;
                         resolve({"error": true, "error_statement": "3: password not accepted"})
                     }
                 })
             }else {
-                this.reqFullData().then(job_response => {
-                    this.searchPending = false;
+                this.handleDataReq().then(job_response => {
                     resolve(job_response)
                 })
             }
@@ -126,38 +104,24 @@ export default class DataManager {
         })
     }
 
-    static reqFullData(){
+    static handleDataReq() {
         return new Promise(resolve => {
-            this.reqData("jobs").then(job_response => {
-                if(job_response["token_accepted"]){
-
-
-                    this.reqData("reviews").then(review_response => {
-                        if(review_response["token_accepted"]){
-                            this.reqData("resumes").then(resume_response => {
-                                if(resume_response["token_accepted"]){
-                                    this.job_data = JSON.parse(job_response["data"])
-                                    this.review_data = JSON.parse(review_response["data"])
-                                    this.resume_data = JSON.parse(resume_response["data"])
-                                    resolve({"error": false})
-                                }else {
-                                    resolve({"error": true, "error_statement": "2: token not accepted"})
-                                    this.token = null
-                                }
-                            })
-                        }
-                    })
+            this.reqData("full").then(response => {
+                if (response["token_accepted"]){
+                    this.data = response["data"]         
+                    resolve({"error": false})
                 }else {
                     resolve({"error": true, "error_statement": "2: token not accepted"})
-                    this.token = null
+                    localStorage.setItem('OTPPtoken', "");
                 }
+                
             })
         })
     }
-
     static reqData(type){
         return new Promise(resolve => {
-            fetch("https://test-app-akp.azurewebsites.net/" + type + "?token=" + this.token).then(response => {
+            let token = localStorage.getItem('OTPPtoken');
+            fetch("https://test-app-akp.azurewebsites.net/" + type + "?token=" + token).then(response => {
                 const json = response.json()
                 resolve(json)
             })

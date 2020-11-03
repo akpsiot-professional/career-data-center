@@ -5,8 +5,6 @@ import '../App.css';
 import { Combobox } from 'react-widgets'
 
 
-
-// TODO: add props that let us specify whether we want a job postings list or a reviews list
 function Filter(props) {
     return (
             <Container fluid style={{paddingBottom: "20px", marginBottom: "30px", marginLeft: "-15px", borderBottom: "1px solid rgba(0,0,0,0.2)"}}>

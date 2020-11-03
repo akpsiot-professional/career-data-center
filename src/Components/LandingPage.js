@@ -29,6 +29,7 @@ class LandingPage extends React.Component{
             password : "",
             loading : false,
             error_message: "",
+            data : {}
         }
 
         this.loadData();
@@ -38,12 +39,14 @@ class LandingPage extends React.Component{
         this.attempts += 1
         this.setState({
             loading : true,
+            modalVisible : true,
         });
         DataManager.loadData(this.state.password).then(response => {
             this.setState({
                 loading: false,
             });
             if (response["error"]){
+                console.log(response["error_statement"])
                 if (this.attempts > 1) {
                     this.setState({
                         error_message : "Wrong Password Brother",
@@ -59,8 +62,19 @@ class LandingPage extends React.Component{
                 this.setState({
                     modalVisible : false,
                 });
+                DataManager.getData("other").then(response => {
+                    if (response["error"]){
+                        this.setState({ redirect: "/" });
+                    }else {
+                        this.setState({
+                            data : response["data"],
+                        });
+                    }
+                }
+                )
             }
         })
+
     }
 
     openModal() {
@@ -82,7 +96,8 @@ class LandingPage extends React.Component{
     handleChange(event) {
         this.setState({password: event.target.value})
     }
-/*
+/* This was giving me an error so idk what to do with it
+
     componentDidMount() {
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
@@ -115,6 +130,10 @@ class LandingPage extends React.Component{
         width: '100%'
     }
 
+    /*
+    Background is blurred for the user experience and does not increase security in any way
+    Do not put confidential information on the landing page unless it requires a token to access
+    */
     renderBlur(){
         if (this.state.modalVisible){
             return (<div style={{position: "absolute", left: "0px", top: "0px", width: "150%", height: "150%", backdropFilter: "blur(10px)", backgroundColor: "rgba(255, 255, 255, 0.1)"}}></div>)
@@ -123,15 +142,7 @@ class LandingPage extends React.Component{
         }
     }
 
-    renderModal(){
-        //onClickAway={() => this.closeModal()} - insert into modal if needed?
-
-        /*
-        <Col xs={4}>
-                                <a  href="javascript:void(0);" onClick={() => this.closeModal(false)}><p style={this.linkStyle}>Close</p></a>
-                            </Col>
-                            */
-                           
+    renderModal(){                      
         if (!this.state.loading){
             return (
                 <div>
@@ -154,8 +165,6 @@ class LandingPage extends React.Component{
                             </Col>
                         </Row>
                         <Row>
-                            
-                            
                             <Col style={{marginTop: "10px"}} xs={{span: 4, offset: 4}}>
                                 <a  href="javascript:void(0);" onClick={() => this.closeModal(true)}> 
                                     <Button variant="warning">Submit</Button>
@@ -182,7 +191,6 @@ class LandingPage extends React.Component{
         
     }
     render() {
-        
         return (
             <div>
                 <Canvas></Canvas>
@@ -193,17 +201,16 @@ class LandingPage extends React.Component{
                                 <h1>Welcome to the Omega Theta Professional Portal</h1>
                                 <p>
                                     The goal for this page is to be a home for OT's career development opportunities. You must be signed in to access the portal's data.
-                                    If you have any suggestions or concerns about this website, feel free to email <strong>alumni.akpsiot@gmail.com</strong>.
-                                    If you have any ideas for professional development, send them to <strong>professional@akpsi-umd.org</strong>
+        If you have any suggestions or concerns about this website, feel free to email <strong>{this.state.data["alumni_email"]}</strong>.
+        If you have any ideas for professional development, send them to <strong>{this.state.data["professional_email"]}</strong>
                                 </p>
                                 <p>
                                     Join the OT LinkedIn group!
                                 </p>
 
-                                <a href="https://www.linkedin.com/groups/2508929/">
+                                <a target="_blank" href={this.state.data["linkedin_link"]}>
                                     <Button variant="warning">LinkedIn</Button>
                                 </a>
-                                
                             </Jumbotron>
                         </Col>
                     </Row>
@@ -265,8 +272,6 @@ class LandingPage extends React.Component{
                             </Card>
                         </Col>
                     </Row>
-                    
-                    
                     {this.renderModal()}
                 </Container>
             </div>

@@ -23,10 +23,7 @@ class More extends React.Component{
         this.loadData()
     }
 
-    cardStyle = {
-        boxShadow: "0px 0px 14px -1px rgba(0,0,0,0.5)",
-        width:"100%"
-    }
+    
 
     loadData(){
         DataManager.getData(this.type).then(response => {
@@ -40,6 +37,11 @@ class More extends React.Component{
             }
         }
         )
+    }
+
+    cardStyle = {
+        boxShadow: "0px 0px 14px -1px rgba(0,0,0,0.5)",
+        width:"100%"
     }
 
     render() {

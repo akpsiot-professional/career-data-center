@@ -16,22 +16,15 @@ class Node {
 		}
 		let random = Math.random();
 			if (random < 0.25){
-				this.color = 1;
+				this.color = 'rgb(0, 0, 0)';
 			} else if (random < 0.5) {
-				this.color = 2;
+				this.color = 'rgb(234, 171, 0)';
 			} else if (random < 0.75){
-				this.color = 3;
+				this.color = 'rgb(152, 30, 50)';
 			} else {
-				this.color = 4;
+				this.color = 'rgb(0, 0, 0)';
 			}
 		}
-
-	getX() {
-		return this.x
-	}
-	getY() {
-		return this.y
-	}
 	reset() {
 		this.x = (Math.random() * 100) + this.canvas.width + this.radius*2;
 		this.y = Math.random() * this.canvas.height;
@@ -52,15 +45,7 @@ class Node {
 		c.beginPath();
 		//   (x, y, r, sAngle, eAngle, cc)
 		c.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
-		if (this.color == 1){
-			c.fillStyle = 'rgb(0, 0, 0)';
-		} else if (this.color == 2) {
-			c.fillStyle = 'rgb(234, 171, 0)';
-		} else if (this.color == 3) {
-			c.fillStyle = 'rgb(152, 30, 50)';
-		} else {
-			c.fillStyle = 'rgb(0, 0, 0)';
-		}
+		c.fillStyle = this.color;
 		
 		c.strokeStyle = 'rgba(240, 240, 240, 0.05)';
   		c.fill();

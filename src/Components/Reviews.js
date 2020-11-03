@@ -5,8 +5,6 @@ import AbstractPage from './AbstractPage'
 
 import 'react-widgets/dist/css/react-widgets.css';
 
-
-
 class Reviews extends React.Component{
     constructor(props){
         super(props)
