@@ -3,12 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../App.css';
 import { Container, Row, Col} from 'react-bootstrap';
 import ElementsList from './ElementsListComponents/ElementsList'
-import Modal from './modal/src';
 import Filter from './Filter'
 import DataManager from '../DataManager'
 import akpsi_logo from '../akpsi_logo.svg';
 
 import { Redirect } from "react-router-dom";
+import Canvas from './Canvas'
 
 import 'react-widgets/dist/css/react-widgets.css';
 
@@ -17,10 +17,8 @@ class AbstractPage extends React.Component{
         super(props)
         this.type = props.type
         this.state = {
-            modalVisible: false,
             data: [],
             filteredData: [],
-            password : "om3gath3ta",
             loadStatus: "loaded",
             filterStatus : props.filterStatus,
             filters: props.filters,
@@ -31,7 +29,7 @@ class AbstractPage extends React.Component{
         this.updateFilter = this.updateFilter.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.filterData = this.filterData.bind(this);
-        this.loadData("not implemented yet", "");
+        this.loadData();
     }
 
     loadData(){
@@ -40,12 +38,7 @@ class AbstractPage extends React.Component{
         });
         DataManager.getData(this.type).then(response => {
             if (response["error"]){
-                if (response["error_num"] == 1){
-                    this.setState({ redirect: "/" });
-                }else {
-                    setTimeout(this.loadData(), 1000)
-                }
-                
+                this.setState({ redirect: "/" });
             }else {
                 this.setState({
                     data : response["data"],
@@ -56,21 +49,6 @@ class AbstractPage extends React.Component{
         )
     }
 
-    openModal() {
-        this.setState({
-            modalVisible : true
-        });
-    }
-
-    closeModal(submit) {
-        this.setState({
-            modalVisible : false,
-        });
-        if (submit){
-            this.loadData()
-        }
-        
-    }
 
     handleChange(event) {
         this.setState({password: event.target.value})
@@ -86,7 +64,8 @@ class AbstractPage extends React.Component{
     }
       
     updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        let heightVal = Math.max(window.innerHeight, 800)
+        this.setState({ width: window.innerWidth, height: heightVal });
     }
 
     filterData(){
@@ -133,20 +112,7 @@ class AbstractPage extends React.Component{
         this.filterData()
     }
 
-    renderModal(){
-        return (
-            <Modal visible={this.state.modalVisible} width="350" height="200" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                <div>
-                    <h1 style={{color:'black'}}>Enter Password</h1>
-                    <input style={{marginTop: "50px", width: "60%"}} type="text" value={this.state.password} onChange={this.handleChange.bind(this)}/><br></br>
-                    <div style={{marginTop: "20px"}}>
-                        <a style={{marginRight: "100px"}} href="javascript:void(0);" onClick={() => this.closeModal(false)}>Close</a>
-                        <a href="javascript:void(0);" onClick={() => this.closeModal(true)}>Submit</a>
-                    </div>
-                </div>
-            </Modal>
-        )
-    }
+    
 
 
     render() {
@@ -174,16 +140,16 @@ class AbstractPage extends React.Component{
                         </Col>
                     </Row>
                     
-                    
-                    {this.renderModal()}
-                </Container>  
                 
+                    
+                </Container>  
+               
             )
         } else {
             return (
                 <div style={{maxHeight:this.state.height, maxWidth:this.state.width}}>
                     <Container fluid className="App">
-                        {this.renderModal()}
+                    <Canvas></Canvas>
                         <div style={{paddingTop: "0px"}}>
                             <Filter data={this.state.data} filters={this.state.filters} change={this.updateFilter} filter={this.filterData}></Filter>
                             <ElementsList elementType={this.type} data={this.state.filteredData} height={this.state.height} width={this.state.width}/>

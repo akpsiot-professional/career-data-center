@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../App.css';
 import JobInfo from './JobInfo'
 import ReviewInfo from './ReviewInfo'
+import ResumeInfo from './ResumeInfo'
 
 const scrollStyle = {
     overflowY:"scroll",
@@ -19,16 +20,22 @@ const highlightColor = {
     backgroundColor: "#C68892ff"
 }
 
+
 // TODO: add props that let us specify whether we want a job postings list or a reviews list
 function ElementsList(props) {
     var rows = renderRows(props.elementType, props.data)
     var content = renderContent(props.elementType, props.data, props.height)
+
+    var left_col = "Positions"
+    if (props.elementType == "resumes"){
+        left_col = "People"
+    }
     return (
         <Tab.Container id="left-tabs-example" defaultActiveKey="eventNum_0">
             <Row>
                 <Col sm={4}>
-                    <Card className="text-left" style={{height: props.height-250}}>
-                        <Card.Header as="h4">Positions</Card.Header>
+                    <Card className="text-left" style={{height: props.height-250, boxShadow: "0px 0px 14px -1px rgba(0,0,0,0.5)"}}>
+                        <Card.Header style={{backgroundColor: 'rgb(234, 171, 0)'}}as="h4">{left_col}</Card.Header>
                         <div style={scrollStyle}>
                             <Card.Body>
                                 <Nav variant="pills" className="flex-column">
@@ -39,8 +46,8 @@ function ElementsList(props) {
                     </Card>
                 </Col>
                 <Col sm={8}>
-                    <Card className="text-left" style={{height: props.height-250}}>
-                        <Card.Header as="h4">Information</Card.Header>
+                    <Card className="text-left" style={{height: props.height-250, boxShadow: "0px 0px 14px -1px rgba(0,0,0,0.5)"}}>
+                        <Card.Header style={{backgroundColor: 'rgb(234, 171, 0)'}} as="h4">Information</Card.Header>
                         <Card.Body>
                             <Tab.Content>
                                 {content}
@@ -54,29 +61,27 @@ function ElementsList(props) {
 }
 
 function renderRows(type, data){
-    switch(type){
-        case "jobs":
+    if (type == "resumes"){
         return (
             data.map((value, index) => (
-                <Nav.Item style={{marginTop: "10px"}} >
-                    <Nav.Link  style={{backgroundColor: "white", borderBottom: "1px solid rgba(0,0,0,0.2)"}} eventKey={"eventNum_" + index.toString()}>
-                            <h4 style={{color: "black", textAlign: "left"}}>{value["company_title"]}</h4>
-                            <p style={{color: "#D4AF37"}}>{value["position_title"]}</p>
-                    </Nav.Link>
-                </Nav.Item>
+                <Nav.Item>
+                        <Nav.Link eventKey={"eventNum_" + index.toString()}>
+                                <h5>{value["first_name"] + " " + value["last_name"]}</h5>
+                        </Nav.Link>
+                    </Nav.Item>
               ))
         )
-        case "reviews":
-            return (
-                data.map((value, index) => (
-                    <Nav.Item>
+    }else {
+        return (
+            data.map((value, index) => (
+                <Nav.Item>
                         <Nav.Link eventKey={"eventNum_" + index.toString()}>
                                 <h5>{value["company_title"]}</h5>
                                 <p>{value["position_title"]}</p>
                         </Nav.Link>
                     </Nav.Item>
-                  ))
-            )
+              ))
+        )
     }
 }
 
@@ -86,11 +91,15 @@ function renderContent(type, data, height){
     switch(type){
         case "jobs":
             return (
-                <JobInfo data={data}></JobInfo>
+                <JobInfo data={data} height={height}></JobInfo>
             )
         case "reviews":
             return (
                 <ReviewInfo data={data} height={height}></ReviewInfo>
+            )
+        case "resumes":
+            return (
+                <ResumeInfo data={data} height={height}></ResumeInfo>
             )
     }
 }

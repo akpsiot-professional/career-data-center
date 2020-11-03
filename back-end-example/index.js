@@ -9,9 +9,9 @@ const fs = require('fs');
 var verifiedTokens = []
 var timestamps = []
 
-let pass = "hack_me"
+let pass = ""
 let tokenInterval = 1 //Minutes
-let tokenExpiration = 1 //Minutes
+let tokenExpiration = 20 //Minutes
 
 setTimeout(checkTokens, tokenInterval * 60000);
 
@@ -40,9 +40,9 @@ function genToken(req){
     let time = new Date()
     verifiedTokens.push(token)
     timestamps.push(0)
-    return {"pass_accepted": true, "token": token, "message": "Correct Token"}
+    return {"pass_accepted": true, "token": token, "message": "This is for you... Enjoy it!"}
   }
-  return {"pass_accepted": false, "token": null, "message": "Wrong Password"}
+  return {"pass_accepted": false, "token": null, "message": "That's the wrong passwrod binch >:("}
 }
  
 async function jobHandler(req) {
@@ -50,7 +50,7 @@ async function jobHandler(req) {
     data = await new Promise(function (resolve) {jobData(public_auth, resolve)})
     return {"token_accepted": true, "data": JSON.stringify(data)}
   }
-  return {"token_accepted": false, "data": "Token Expired"}
+  return {"token_accepted": false, "data": "sorry king your token expired. Keep your head up tho"}
 }
 
 async function reviewHandler(req) {
@@ -58,9 +58,16 @@ async function reviewHandler(req) {
     data = await new Promise(function (resolve) {reviewData(public_auth, resolve)})
     return {"token_accepted": true, "data": JSON.stringify(data)}
   }
-  return {"token_accepted": false, "data": "Token Expired"}
+  return {"token_accepted": false, "data": "sorry king your token expired. Keep your head up tho"}
 }
 
+async function resumeHandler(req) {
+  if (verifyToken(req.query.token)){
+    data = await new Promise(function (resolve) {resumeData(public_auth, resolve)})
+    return {"token_accepted": true, "data": JSON.stringify(data)}
+  }
+  return {"token_accepted": false, "data": "sorry king your token expired. Keep your head up tho"}
+}
 
 function asyncWrapper(fn) {
     return (req, res, next) => {
@@ -70,10 +77,11 @@ function asyncWrapper(fn) {
     }
   }
 
-/* GET home page. */
 router.get('/jobs', asyncWrapper(jobHandler));
 
 router.get('/reviews', asyncWrapper(reviewHandler));
+
+router.get('/resumes', asyncWrapper(resumeHandler));
 
 router.get('/gen-token', asyncWrapper(genToken))
 
@@ -156,7 +164,8 @@ function reviewData(auth, resolve) {
     if (rows.length) {
         data = []
       rows.map((row) => {
-        data.push({"first_name": row[1], 
+        data.push({"timestamp": row[0],
+                  "first_name": row[1], 
                   "last_name": row[2], 
                   "contact": row[3],
                   "company_title": row[4],
@@ -182,7 +191,8 @@ function reviewData(auth, resolve) {
                   "enjoyable_rating": row[24],
                   "favorite": row[25],
                   "least_favorite": row[26],
-                  "compensation": row[27]})
+                  "compensation": row[27],
+                  "form": "https://docs.google.com/forms/d/e/1FAIpQLSf79vOfzZbmRTngJkpxS7fmZa7IQpJ-0SH3VUFz5PklxLbWeg/viewform?usp=sf_link"})
       });
       resolve(data)
     } else {
@@ -203,7 +213,8 @@ function jobData(auth, resolve) {
     if (rows.length) {
         data = []
       rows.map((row) => {
-        data.push({"first_name": row[1], 
+        data.push({"timestamp": row[0],
+                  "first_name": row[1], 
                   "last_name": row[2], 
                   "contact": row[3],
                   "company_title": row[4],
@@ -215,7 +226,38 @@ function jobData(auth, resolve) {
                   "referral_optional": row[10],
                   "link": row[11],
                   "notes": row[12],
-                  "conditions": row[13]})
+                  "conditions": row[13],
+                  "location": row[14], 
+                  "form" : "https://docs.google.com/forms/d/e/1FAIpQLSdbHl2WvYY2MBBU-INOpRy_id5HXWccD08sCByYuNWrdFXCcg/viewform?usp=sf_link"})
+      });
+      resolve(data)
+    } else {
+      resolve(null)
+    }
+  });
+}
+
+//Link: https://docs.google.com/spreadsheets/d/1MrqoaamBKxfXm_-7eBjY5ppSgp57cUWjWyOdbj3Jyp4/edit?ts=5f9f43ee#gid=1883513319
+function resumeData(auth, resolve) {
+  const sheets = google.sheets({version: 'v4', auth});
+  sheets.spreadsheets.values.get({
+    spreadsheetId: '1MrqoaamBKxfXm_-7eBjY5ppSgp57cUWjWyOdbj3Jyp4',
+    range: 'Form Responses 1!A2:I',
+  }, (err, res) => {
+    if (err) return console.log('The API returned an error: ' + err);
+    const rows = res.data.values;
+    if (rows.length) {
+        data = []
+      rows.map((row) => {
+        data.push({"timestamp": row[0],
+                  "email": row[1], 
+                  "first_name": row[2], 
+                  "last_name": row[3],
+                  "contact": row[4],
+                  "resume" : row[5],
+                  "track": row[6],
+                  "positions": row[7],
+                  "notes": row[8]})
       });
       resolve(data)
     } else {

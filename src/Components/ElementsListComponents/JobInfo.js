@@ -1,39 +1,25 @@
 import React from 'react';
-import { Tab, Row, Col } from 'react-bootstrap'
+import { Tab, Row, Col, Container } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../App.css';
 
 
-const scrollStyle = {
-    height: "550px", 
-    overflowY:"scroll"
+const pad = {
+    paddingTop: "20px"
 }
 
 const label = {
     marginBottom: "0px",
-    fontSize: "10px",
-    color: "#D4AF37"
-}
-
-function offeringReferral(value){
-    if (value["referral_optional"][0] == "Y"){
-        return (
-            <div>
-                <p style={label}>Referral Conditions</p>
-                <p>{value["conditions"]}</p>
-            </div>
-        )
-    }else {
-        return 
-    }
+    fontSize: "15px",
+    color: 'rgb(152, 30, 50)'
 }
 
 function JobInfo(props) {
     return (
         props.data.map((value, index) => (
             <Tab.Pane eventKey={"eventNum_" + index.toString()}>
-                <div style={scrollStyle}>
-                    <Row>
+                <Container style={{height: props.height-330, overflowY: "scroll"}}>
+                <Row>
                         <Col>
                             <p style={label}>{value["company_type"]}</p>
                             <h3 style={{textAlign: "left"}}>{value["company_title"]}</h3>
@@ -90,12 +76,25 @@ function JobInfo(props) {
                             <p style={label}>Link</p>
                             <a style={{textAlign: "left"}} target="_blank" href={value["link"]}>Apply</a>
                         </Col>
-                    </Row>   
-                </div>
+                    </Row>  
+                    </Container> 
             </Tab.Pane>
+        )
+    ))
+}
 
-          ))
-    )
+
+function offeringReferral(value){
+    if (value["referral_optional"][0] == "Y"){
+        return (
+            <div>
+                <p style={label}>Referral Conditions</p>
+                <p>{value["conditions"]}</p>
+            </div>
+        )
+    }else {
+        return 
+    }
 }
 
 export default JobInfo;
