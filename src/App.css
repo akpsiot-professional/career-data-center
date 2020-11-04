@@ -61,8 +61,8 @@
   color: #F6F7EB;
 }
 
-.nav-item > .nav-link.active {
-  background-color: #C68892ff;
+.card-body > .nav > .nav-item > .nav-link.active {
+  background-color: #C68892;
   color: white;
 }
 
@@ -75,11 +75,21 @@
 }
 
 .nav-item > .nav-link > h5 {
-  color: #C68892ff;
+  color: #C68892;
 }
 
 .nav-item > .nav-link > p {
-  color: #C68892ff;
+  color: #C68892;
+}
+
+.buttonColor {
+  background-color: #C68892;
+  color: white;
+}
+
+.tab-container > .nav > .nav-item > .nav-link.active {
+  background-color: white;
+  color: #3F403F;
 }
 
 
