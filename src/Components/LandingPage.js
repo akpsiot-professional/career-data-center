@@ -209,7 +209,7 @@ class LandingPage extends React.Component{
                                 </p>
 
                                 <a target="_blank" href={this.state.data["linkedin_link"]}>
-                                    <Button variant="warning">LinkedIn</Button>
+                                    <Button variant="outline-*" className="buttonColor">LinkedIn</Button>
                                 </a>
                             </Jumbotron>
                         </Col>
@@ -224,7 +224,7 @@ class LandingPage extends React.Component{
                                         Check out the latest job postings. Sort by company, position type, and more.
                                     </Card.Text>
                                     <Link to="/jobs">
-                                        <Button variant="warning">Go to Jobs</Button>
+                                        <Button variant="outline-*" className="buttonColor">Go to Jobs</Button>
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -238,7 +238,7 @@ class LandingPage extends React.Component{
                                         Find reviews of working and interview experience at many companies.
                                     </Card.Text>
                                     <Link to="/reviews">
-                                        <Button variant="warning">Go to Reviews</Button>
+                                        <Button variant="outline-*" className="buttonColor">Go to Reviews</Button>
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -252,7 +252,7 @@ class LandingPage extends React.Component{
                                         Do you have an opportunity or experience that you could share?
                                     </Card.Text>
                                     <Link to="/more">
-                                        <Button variant="warning">Submit Posts</Button>
+                                        <Button variant="outline-*" className="buttonColor">Submit Posts</Button>
                                     </Link>
                                 </Card.Body>
                             </Card>
@@ -265,8 +265,8 @@ class LandingPage extends React.Component{
                                     <Card.Text>
                                         Sort through brothers' resumes by difference tracks and find your path.
                                     </Card.Text>
-                                    <Link  to="/resumes">
-                                        <Button variant="warning">Go to Resumes</Button>
+                                    <Link to="/resumes">
+                                        <Button variant="outline-*" className="buttonColor">Go to Resumes</Button>
                                     </Link>
                                 </Card.Body>
                             </Card>
