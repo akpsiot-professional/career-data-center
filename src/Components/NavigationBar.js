@@ -29,6 +29,7 @@ function NavigationBar() {
                 <Nav.Link as={Link} to="/about"><img style={iconStyle} src={about_icon}></img>About</Nav.Link>
             </Nav>
         </Navbar>
+        
     )
 }
 
