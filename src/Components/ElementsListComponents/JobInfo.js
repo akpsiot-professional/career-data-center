@@ -15,6 +15,82 @@ const label = {
 }
 
 function JobInfo(props) {
+    if (window.innerWidth <= 500){
+        return (props.data.map((value, index) => (
+        <Tab.Pane eventKey={"eventNum_" + index.toString()}>
+        <Container style={{height: props.height-330, overflowY: "scroll"}}>
+        <Row>
+                <Col>
+                    <p style={label}>{value["company_type"]}</p>
+                    <h3 style={{textAlign: "left"}}>{value["company_title"]}</h3>
+                    
+                </Col>
+                </Row>
+                <Row>
+
+                <Col>
+                    <p style={label}>Submission from</p>
+                    <p>{value["first_name"]}{" " + value["last_name"]}</p>
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                    <p style={label}>Submitted on</p>
+                    <p>{" " + (value["timestamp"].split(" "))[0]}</p>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <p style={label}>Position</p>
+                    <p>{value["position_title"]}</p>
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                    <p style={label}>Contact</p>
+                    <p>{value["contact"]}</p>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                <p style={label}>Job Description</p>
+                <div style={{maxHeight: "300px", overflow: "scroll", marginBottom: "10px"}}>
+                    <p>{value["job_description"]}</p>
+                </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <p style={label}>Notes</p>
+                    <p>{value["notes"]}</p>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    {offeringReferral(value)}
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <p style={label}>Deadline</p>
+                    <p>{value["deadline"]}</p>
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                    <p style={label}>Recruiter Contact</p>
+                    <p>{value["contact_recruiter"]}</p>
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                    <p style={label}>Link</p>
+                    <a style={{textAlign: "left"}} target="_blank" href={value["link"]}>Apply</a>
+                </Col>
+            </Row>  
+            </Container> 
+    </Tab.Pane>)))
+    }
     return (
         props.data.map((value, index) => (
             <Tab.Pane eventKey={"eventNum_" + index.toString()}>

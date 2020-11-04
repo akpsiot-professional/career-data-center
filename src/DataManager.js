@@ -6,7 +6,6 @@ export default class DataManager {
     */
 
     static password = null
-
     static data = null
 
     static getData(type) {
@@ -108,7 +107,10 @@ export default class DataManager {
         return new Promise(resolve => {
             this.reqData("full").then(response => {
                 if (response["token_accepted"]){
-                    this.data = response["data"]         
+                    this.data = response["data"]
+                    //Reverse order
+                    this.data["jobs"].reverse()
+                    this.data["reviews"].reverse()         
                     resolve({"error": false})
                 }else {
                     resolve({"error": true, "error_statement": "2: token not accepted"})

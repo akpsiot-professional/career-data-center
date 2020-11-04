@@ -29,7 +29,8 @@ class LandingPage extends React.Component{
             password : "",
             loading : true,
             error_message: "",
-            data : {}
+            data : {},
+            width: window.innerWidth
         }
 
         this.loadData();
@@ -95,8 +96,8 @@ class LandingPage extends React.Component{
     handleChange(event) {
         this.setState({password: event.target.value})
     }
-/* This was giving me an error so idk what to do with it
 
+    /* Binding Problems that I don't understand
     componentDidMount() {
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
@@ -189,7 +190,105 @@ class LandingPage extends React.Component{
         }
         
     }
+
+    renderCard(number){
+        if (number == 1){
+            return (<Card style={this.cardStyle}>
+                <Card.Img variant="top" src={stock_3} />
+                <Card.Body>
+                    <Card.Title>Job Opportunities</Card.Title>
+                    <Card.Text>
+                        Check out the latest job postings. Sort by company, position type, and more.
+                    </Card.Text>
+                    <Link to="/jobs">
+                        <Button variant="outline-*" className="buttonColor">Go to Jobs</Button>
+                    </Link>
+                </Card.Body>
+            </Card>)
+        }else if (number == 2){
+            return (<Card style={this.cardStyle}>
+                <Card.Img variant="top" src={stock_4} />
+                <Card.Body>
+                    <Card.Title>Company Reviews</Card.Title>
+                    <Card.Text>
+                        Find reviews of working and interview experience at many companies.
+                    </Card.Text>
+                    <Link to="/reviews">
+                        <Button variant="outline-*" className="buttonColor">Go to Reviews</Button>
+                    </Link>
+                </Card.Body>
+            </Card>)
+        }else if (number == 3){
+            return (<Card style={this.cardStyle}>
+                <Card.Img variant="top" src={stock_5} />
+                <Card.Body>
+                    <Card.Title>Submit a Post</Card.Title>
+                    <Card.Text>
+                        Do you have an opportunity or experience that you could share?
+                    </Card.Text>
+                    <Link to="/more">
+                        <Button variant="outline-*" className="buttonColor">Submit Posts</Button>
+                    </Link>
+                </Card.Body>
+            </Card>)
+        }else if (number == 4){
+            return (<Card style={this.cardStyle}>
+                <Card.Img variant="top" src={stock_6} />
+                <Card.Body>
+                    <Card.Title>Find a Resume</Card.Title>
+                    <Card.Text>
+                        Sort through brothers' resumes by difference tracks and find your path.
+                    </Card.Text>
+                    <Link to="/resumes">
+                        <Button variant="outline-*" className="buttonColor">Go to Resumes</Button>
+                    </Link>
+                </Card.Body>
+            </Card>)
+        }
+    }
+
+    renderCards(){
+        if (this.state.width <= 500){
+            return (<div><Row>
+                <Col>
+                    {this.renderCard(1)}
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                    {this.renderCard(2)}
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                    {this.renderCard(3)}
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                    {this.renderCard(4)}
+                </Col>
+            </Row></div>)
+        }else {
+            return (<Row>
+                <Col>
+                    {this.renderCard(1)}
+                </Col>
+                <Col>
+                    {this.renderCard(2)}
+                </Col>
+                <Col>
+                    {this.renderCard(3)}
+                </Col>
+                <Col>
+                    {this.renderCard(4)}
+                </Col>
+            </Row>)
+        }
+    }
+
     render() {
+        
         return (
             <div>
                 <Canvas></Canvas>
@@ -213,64 +312,7 @@ class LandingPage extends React.Component{
                             </Jumbotron>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                            <Card style={this.cardStyle}>
-                                <Card.Img variant="top" src={stock_3} />
-                                <Card.Body>
-                                    <Card.Title>Job Opportunities</Card.Title>
-                                    <Card.Text>
-                                        Check out the latest job postings. Sort by company, position type, and more.
-                                    </Card.Text>
-                                    <Link to="/jobs">
-                                        <Button variant="outline-*" className="buttonColor">Go to Jobs</Button>
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card style={this.cardStyle}>
-                                <Card.Img variant="top" src={stock_4} />
-                                <Card.Body>
-                                    <Card.Title>Company Reviews</Card.Title>
-                                    <Card.Text>
-                                        Find reviews of working and interview experience at many companies.
-                                    </Card.Text>
-                                    <Link to="/reviews">
-                                        <Button variant="outline-*" className="buttonColor">Go to Reviews</Button>
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card style={this.cardStyle}>
-                                <Card.Img variant="top" src={stock_5} />
-                                <Card.Body>
-                                    <Card.Title>Submit a Post</Card.Title>
-                                    <Card.Text>
-                                        Do you have an opportunity or experience that you could share?
-                                    </Card.Text>
-                                    <Link to="/more">
-                                        <Button variant="outline-*" className="buttonColor">Submit Posts</Button>
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                        <Card style={this.cardStyle}>
-                                <Card.Img variant="top" src={stock_6} />
-                                <Card.Body>
-                                    <Card.Title>Find a Resume</Card.Title>
-                                    <Card.Text>
-                                        Sort through brothers' resumes by difference tracks and find your path.
-                                    </Card.Text>
-                                    <Link to="/resumes">
-                                        <Button variant="outline-*" className="buttonColor">Go to Resumes</Button>
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
+                    {this.renderCards()}
                     {this.renderModal()}
                 </Container>
             </div>

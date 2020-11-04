@@ -5,7 +5,7 @@ import '../../App.css';
 
 
 const pad = {
-    paddingTop: "20px"
+    paddingTop: "20px",
 }
 
 const label = {
@@ -15,6 +15,64 @@ const label = {
 }
 
 function work(value){
+    if (window.innerWidth <= 500){
+        return (<Tab.Pane eventKey="work">
+        <Row>
+            <Col>
+                <p style={label}>Start Date</p>
+                <p>{value["start"]}</p>
+            </Col>
+            </Row>
+            <Row>
+            <Col>
+                <p style={label}>End Date</p>
+                <p>{value["end"]}</p>
+            </Col>
+            </Row>
+            <Row>
+            <Col>
+                <p style={label}>Hours Per Week</p>
+                <p>{value["hours_per_week"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Tasks</p>
+                <p>{value["tasks"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Would You Recomend? (Out of 5)</p>
+                <p>{value["recomend_rating"]}</p>
+            </Col>
+            </Row>
+            <Row>
+            <Col>
+                <p style={label}>How Enjoyable? (Out of 5)</p>
+                <p>{value["enjoyable_rating"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Compensation</p>
+                <p>{(value["compensation"] !== undefined && value["compensation"] !== "") ? value["compensation"] : '-'}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Favorite Part</p>
+                <p>{value["favorite"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Least Favorite Part</p>
+                <p>{value["least_favorite"]}</p>
+            </Col>
+        </Row>
+    </Tab.Pane>)
+    }
     if (value["share_work_optional"][0] == "Y" || value["share_internship_optional"][0] == "N" || value["share_internship_optional"][0] == "W"){
         return (
             <Tab.Pane eventKey="work">
@@ -73,6 +131,58 @@ function work(value){
 }
 
 function interview(value){
+    if (window.innerWidth <= 500){
+        return (<Tab.Pane eventKey="interview">
+        <Row>
+            <Col>
+                <p style={label}>Interview Type</p>
+                <p>{value["type_interview"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Highlighted Questions</p>
+                <p>{value["questions"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Suggested Prep</p>
+                <p>{value["prep"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Difficulty Level (out of 5)</p>
+                <p>{value["difficulty_level"] + ' - ' + value["difficulty_explanation"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Enjoyable Level (out of 5)</p>
+                <p>{value["enjoyable_level"] + ' - ' + value["enjoyable_explanation"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Result</p>
+                <p>{value["result"]}</p>
+            </Col>
+            </Row>
+            <Row>
+            <Col>
+                <p style={label}>Total Interview Period</p>
+                <p>{value["time"]}</p>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <p style={label}>Comments</p>
+                <p>{value["additional"]}</p>
+            </Col>
+        </Row>
+    </Tab.Pane>)
+    }
     if (value["share_internship_optional"][0] == "Y"){
         return (
             <Tab.Pane eventKey="interview">
@@ -176,6 +286,45 @@ function renderTabs(value, height) {
 }
 
 function ReviewInfo(props) {
+    if (window.innerWidth <= 500){
+        return (props.data.map((value, index) => (
+            <Tab.Pane eventKey={"eventNum_" + index.toString()}>
+                <Row>
+                    <Col>
+                        <p style={label}>{value["company_type"]}</p>
+                        <p style={{textAlign: "left"}}>{value["company_title"]}</p>
+                        
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+                        <p style={label}>Submission from</p>
+                        <p>{value["first_name"]}{" " + value["last_name"]}</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <p style={label}>Position</p>
+                        <p>{value["position_title"]}</p>
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+                        <p style={label}>Contact</p>
+                        <p>{value["contact"]}</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div style={{height: props.height-450, overflowY: "scroll", overflowX: "hidden"}}>
+                            {renderTabs(value)}
+                        </div>
+                    </Col>
+                </Row>
+            </Tab.Pane>
+        )
+    ))
+    }
     return (
         props.data.map((value, index) => (
             <Tab.Pane eventKey={"eventNum_" + index.toString()}>

@@ -15,6 +15,43 @@ const label = {
 }
 
 function ResumeInfo(props) {
+    if (window.innerWidth <= 500){
+        return (props.data.map((value, index) => (
+            <Tab.Pane eventKey={"eventNum_" + index.toString()}>
+                <Container style={{height: props.height-330, overflowY: "scroll"}}>
+                <Row>
+                    <Col>
+                        <p style={label}>{value["track"]}</p>
+                        <h3 style={{textAlign: "left"}}>{value["positions"]}</h3>
+                        
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+                        <p style={label}>Submission from</p>
+                        <p>{value["first_name"]}{" " + value["last_name"]}</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <a href={value["resume"]} target="_blank">
+                            <Button variant="warning">Resume</Button>
+                        </a>
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+                        <p style={label}>Contact</p>
+                        <p style={{textAlign: "left"}}>{value["contact"]}</p>
+                    </Col>
+                </Row>
+                    
+                     
+                    </Container> 
+            </Tab.Pane>
+        )
+    ))
+    }
     return (
         props.data.map((value, index) => (
             <Tab.Pane eventKey={"eventNum_" + index.toString()}>

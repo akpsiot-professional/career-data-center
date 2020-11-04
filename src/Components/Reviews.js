@@ -9,7 +9,11 @@ class Reviews extends React.Component{
     constructor(props){
         super(props)
         this.filterStatus = {}
-        this.filters = ["company_title", "company_type", "position_title", "difficulty_level"]
+        if (window.innerWidth <= 500) {
+            this.filters = ["company_title", "position_title"]
+        }else {
+            this.filters = ["company_title", "company_type", "position_title", "difficulty_level"]
+        }
         this.filters.forEach(element => {
             this.filterStatus[element] = "All";
         });

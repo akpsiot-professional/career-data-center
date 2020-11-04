@@ -18,6 +18,20 @@ let iconStyle = {
 }
 
 function NavigationBar() {
+    if (window.innerWidth <= 500){
+        return (
+            <Navbar style={{backgroundColor: "#FFB100"}} variant="light" float="center" fixed="top">
+            <Link to="/"><img style={{height: "40px", paddingRight: "20px"}} src={akpsi_sticker} alt="logo"/></Link>
+            <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/jobs"><img style={iconStyle} src={jobs_icon}></img></Nav.Link>
+                <Nav.Link as={Link} to="/reviews"><img style={iconStyle} src={reviews_icon}></img></Nav.Link>
+                <Nav.Link as={Link} to="/more"><img style={iconStyle} src={more_icon}></img></Nav.Link>
+                <Nav.Link as={Link} to="/resumes"><img style={iconStyle} src={document_icon}></img></Nav.Link>
+                <Nav.Link as={Link} to="/about"><img style={iconStyle} src={about_icon}></img></Nav.Link>
+            </Nav>
+        </Navbar>
+        )
+    }
     return (
         <Navbar style={{backgroundColor: "#FFB100"}} variant="light" float="center" fixed="top">
             <Link to="/"><img style={{height: "40px", paddingRight: "20px"}} src={akpsi_sticker} alt="logo"/></Link>
