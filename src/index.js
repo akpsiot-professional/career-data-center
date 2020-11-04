@@ -15,7 +15,7 @@ import Resumes from './Components/Resumes'
 import About from './Components/About'
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <NavigationBar className="Nav-bar"/>
     <Switch>
       <Route exact path="/" component={App} />
