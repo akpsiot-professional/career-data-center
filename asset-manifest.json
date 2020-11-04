@@ -1,23 +1,36 @@
 {
   "files": {
-    "main.css": "/career-data-center/static/css/main.5f361e03.chunk.css",
-    "main.js": "/career-data-center/static/js/main.5e7a258b.chunk.js",
-    "main.js.map": "/career-data-center/static/js/main.5e7a258b.chunk.js.map",
+    "main.css": "/career-data-center/static/css/main.8f726e74.chunk.css",
+    "main.js": "/career-data-center/static/js/main.f9c766bd.chunk.js",
+    "main.js.map": "/career-data-center/static/js/main.f9c766bd.chunk.js.map",
     "runtime-main.js": "/career-data-center/static/js/runtime-main.74e6998d.js",
     "runtime-main.js.map": "/career-data-center/static/js/runtime-main.74e6998d.js.map",
-    "static/js/2.3581e7ef.chunk.js": "/career-data-center/static/js/2.3581e7ef.chunk.js",
-    "static/js/2.3581e7ef.chunk.js.map": "/career-data-center/static/js/2.3581e7ef.chunk.js.map",
+    "static/css/2.6d32f2dd.chunk.css": "/career-data-center/static/css/2.6d32f2dd.chunk.css",
+    "static/js/2.df681863.chunk.js": "/career-data-center/static/js/2.df681863.chunk.js",
+    "static/js/2.df681863.chunk.js.map": "/career-data-center/static/js/2.df681863.chunk.js.map",
     "index.html": "/career-data-center/index.html",
-    "precache-manifest.741ad7ac44ca1b16b847080bee6e9d9c.js": "/career-data-center/precache-manifest.741ad7ac44ca1b16b847080bee6e9d9c.js",
+    "precache-manifest.343bf2bb87219f02923728dcbbba9cb0.js": "/career-data-center/precache-manifest.343bf2bb87219f02923728dcbbba9cb0.js",
     "service-worker.js": "/career-data-center/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/career-data-center/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.3581e7ef.chunk.js.LICENSE.txt": "/career-data-center/static/js/2.3581e7ef.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/career-data-center/static/media/logo.5d5d9eef.svg"
+    "static/css/2.6d32f2dd.chunk.css.map": "/career-data-center/static/css/2.6d32f2dd.chunk.css.map",
+    "static/css/main.8f726e74.chunk.css.map": "/career-data-center/static/css/main.8f726e74.chunk.css.map",
+    "static/js/2.df681863.chunk.js.LICENSE.txt": "/career-data-center/static/js/2.df681863.chunk.js.LICENSE.txt",
+    "static/media/akpsi_logo.svg": "/career-data-center/static/media/akpsi_logo.69db09ac.svg",
+    "static/media/akpsiot_sticker.svg": "/career-data-center/static/media/akpsiot_sticker.8bb918d3.svg",
+    "static/media/react-widgets.css": "/career-data-center/static/media/rw-widgets.eceddf47.ttf",
+    "static/media/plus.png": "/career-data-center/static/media/plus.cf050959.png",
+    "static/media/reviews.png": "/career-data-center/static/media/reviews.c625dfc4.png",
+    "static/media/stock_1.jpg": "/career-data-center/static/media/stock_1.359f2862.jpg",
+    "static/media/stock_2.jpg": "/career-data-center/static/media/stock_2.6b6f4069.jpg",
+    "static/media/stock_3.jpg": "/career-data-center/static/media/stock_3.29b6dbd0.jpg",
+    "static/media/stock_4.jpg": "/career-data-center/static/media/stock_4.e98bf002.jpg",
+    "static/media/stock_5.jpg": "/career-data-center/static/media/stock_5.7592ca50.jpg",
+    "static/media/stock_6.jpg": "/career-data-center/static/media/stock_6.22216b73.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.74e6998d.js",
-    "static/js/2.3581e7ef.chunk.js",
-    "static/css/main.5f361e03.chunk.css",
-    "static/js/main.5e7a258b.chunk.js"
+    "static/css/2.6d32f2dd.chunk.css",
+    "static/js/2.df681863.chunk.js",
+    "static/css/main.8f726e74.chunk.css",
+    "static/js/main.f9c766bd.chunk.js"
   ]
 }
