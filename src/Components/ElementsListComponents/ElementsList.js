@@ -23,6 +23,7 @@ const highlightColor = {
 
 // TODO: add props that let us specify whether we want a job postings list or a reviews list
 function ElementsList(props) {
+    props.data.reverse()
     var rows = renderRows(props.elementType, props.data)
     var content = renderContent(props.elementType, props.data, props.height)
 

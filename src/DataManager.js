@@ -28,7 +28,7 @@ export default class DataManager {
             if (this.job_data == null){
                 resolve({"error": true, "error_num": 1})
             }else {
-                resolve({"error": false, "data": this.job_data})
+                resolve({"error": false, "data": this.job_data.reverse()})
             }
         })
     }

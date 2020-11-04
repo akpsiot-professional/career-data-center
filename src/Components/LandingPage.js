@@ -25,9 +25,9 @@ class LandingPage extends React.Component{
         this.type = props.type
         this.attempts = 0
         this.state = {
-            modalVisible: false,
+            modalVisible: true,
             password : "",
-            loading : false,
+            loading : true,
             error_message: "",
             data : {}
         }
@@ -37,10 +37,6 @@ class LandingPage extends React.Component{
 
     loadData(){
         this.attempts += 1
-        this.setState({
-            loading : true,
-            modalVisible : true,
-        });
         DataManager.loadData(this.state.password).then(response => {
             this.setState({
                 loading: false,
@@ -85,6 +81,9 @@ class LandingPage extends React.Component{
 
     closeModal(submit) {
         if (submit){
+            this.setState({
+                loading : true,
+            });
             this.loadData()
         }else {
             this.setState({
