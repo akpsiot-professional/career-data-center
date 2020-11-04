@@ -17,7 +17,6 @@ import About from './Components/About'
 ReactDOM.render(
   <BrowserRouter>
     <NavigationBar className="Nav-bar"/>
-    <App></App>
     <Switch>
       <Route exact path="/" component={App} />
       <Route path="/jobs" component={Jobs} />
