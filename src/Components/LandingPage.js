@@ -237,7 +237,7 @@ class LandingPage extends React.Component{
                 <Card.Body>
                     <Card.Title>Find a Resume</Card.Title>
                     <Card.Text>
-                        Sort through brothers' resumes by difference tracks and find your path.
+                        Sort through brothers' resumes by different tracks and find your path.
                     </Card.Text>
                     <Link to="/resumes">
                         <Button variant="outline-*" className="buttonColor">Go to Resumes</Button>

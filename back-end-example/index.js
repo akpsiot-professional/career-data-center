@@ -69,6 +69,18 @@ async function resumeHandler(req) {
   return {"token_accepted": false, "data": "sorry king your token expired. Keep your head up tho"}
 }
 
+async function fullDataHandler(req) {
+  if (verifyToken(req.query.token)){
+    job_data = await new Promise(function (resolve) {jobData(public_auth, resolve)})
+    review_data = await new Promise(function (resolve) {reviewData(public_auth, resolve)})
+    resume_data = await new Promise(function (resolve) {resumeData(public_auth, resolve)})
+    other_data = otherData()
+    data = {"jobs": job_data, "reviews": review_data, "resumes": resume_data, "other": other_data}
+    return {"token_accepted": true, "data": data}
+  }
+  return {"token_accepted": false, "data": "sorry king your token expired. Keep your head up tho"}
+}
+
 function asyncWrapper(fn) {
     return (req, res, next) => {
       return Promise.resolve(fn(req))
@@ -82,6 +94,8 @@ router.get('/jobs', asyncWrapper(jobHandler));
 router.get('/reviews', asyncWrapper(reviewHandler));
 
 router.get('/resumes', asyncWrapper(resumeHandler));
+
+router.get('/full', asyncWrapper(fullDataHandler));
 
 router.get('/gen-token', asyncWrapper(genToken))
 
@@ -147,9 +161,14 @@ function getNewToken(oAuth2Client) {
       fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
         if (err) return console.error(err);
         console.log('Token stored to', TOKEN_PATH);
+        
       });
     });
   });
+}
+
+function otherData(){
+  return {"professional_email": "professional@akpsi-umd.org", "alumni_email": "alumni.akpsiot@gmail.com", "linkedin_link": "https://www.linkedin.com/groups/2508929/", "resume_form": "https://docs.google.com/forms/d/1JGlZKo_sqsS3nl9UE3Qw5oBCBtlJrwJ8XF3f4JBvH4g/viewform?edit_requested=true"};
 }
 
 //Link: https://docs.google.com/spreadsheets/d/1Pi2WI5tXAR76LEywEp9eJy-fpW3CpXhKZoFsFAvCI5Y/edit#gid=20786601
