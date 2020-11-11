@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import DataManager  from '../DataManager'
 import stock_1 from '../images/stock_1.jpg'
 import stock_2 from '../images/stock_2.jpg'
+import stock_7 from '../images/stock_7.jpg'
 
 
 class More extends React.Component{
@@ -33,6 +34,7 @@ class More extends React.Component{
                 this.setState({
                     job_form : response["data"]["job_form"],
                     review_form : response["data"]["review_form"],
+                    resume_form : response["data"]["resume_form"]
                 });
             }
         }
@@ -62,7 +64,7 @@ class More extends React.Component{
                                     <Card.Text>
                                         Know of an Entry-Level or Internship Opportunity?
                                     </Card.Text>
-                                    <a href={this.state.job_form}>
+                                    <a target="_blank" href={this.state.job_form}>
                                         <Button>Post a Job Opportunity</Button>
                                     </a>
                                 </Card.Body>
@@ -76,7 +78,7 @@ class More extends React.Component{
                                     <Card.Text>
                                         If you worked for a company or interviewed for a position there.
                                     </Card.Text>
-                                    <a href={this.state.review_form}>
+                                    <a target="_blank" href={this.state.review_form}>
                                         <Button>Post a Review</Button>
                                     </a>
                                 </Card.Body>
@@ -84,6 +86,24 @@ class More extends React.Component{
                             
                             </Col>
 
+                        </Row>
+                        <Row>
+                            <Col>
+                            <Card style={this.cardStyle}>
+                                <Card.Img variant="top" src={stock_7} />
+                                <Card.Body>
+                                    <Card.Title>Resumes</Card.Title>
+                                    <Card.Text>
+                                        Submit your resume at the time of interviewing.
+                                    </Card.Text>
+                                    <a target="_blank" href={this.state.resume_form}>
+                                        <Button>Submit a Resume</Button>
+                                    </a>
+                                </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col>
+                            </Col>
                         </Row>
                     </Container>
                 </div>

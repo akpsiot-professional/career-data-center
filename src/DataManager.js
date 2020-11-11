@@ -14,7 +14,7 @@ export default class DataManager {
                 resolve({"error": true, "error_num": 1})
             }else {
                 if (type == "forms"){
-                    let forms = {"job_form": this.data["jobs"][0]["form"], "review_form":this.data["reviews"][0]["form"]}
+                    let forms = {"job_form": this.data["jobs"][0]["form"], "review_form":this.data["reviews"][0]["form"], "resume_form": this.data["other"]["resume_form"]}
                     resolve({"error": false, "data": forms})
                 }
                 resolve({"error": false, "data": this.data[type]})
